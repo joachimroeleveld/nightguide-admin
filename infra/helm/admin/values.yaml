@@ -4,6 +4,9 @@
 
 replicaCount: 1
 
+env:
+  API_URL: https://api.nightguide.app
+
 image:
   repository: gcr.io/nightguide-infra/admin
   tag: stable
