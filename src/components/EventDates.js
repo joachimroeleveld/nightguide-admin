@@ -1,0 +1,43 @@
+import React from 'react';
+import moment from 'moment';
+import _ from 'lodash';
+
+const EventDates = ({ source, record = {}, items = null }) => {
+  const dates = _.get(record, source);
+  if (dates && dates.length) {
+    const sameDay = moment(dates[0].from).isSame(dates[0].to, 'day');
+    const datesToShow = dates.slice(0, items ? items : dates.length);
+
+    return datesToShow.map((date, index) => (
+      <div key={index}>
+        {sameDay && (
+          <div>
+            <span>{moment(date.from).format('ddd D MMM')}</span>
+            {' | '}
+            <span>{moment(date.from).format('HH:mm')}</span>
+            {' - '}
+            <span>{moment(date.to).format('HH:mm')}</span>
+          </div>
+        )}
+        {!sameDay && (
+          <div>
+            <span>{moment(date.from).format('ddd D MMM HH:mm')}</span>
+            {' - '}
+            <span>{moment(date.to).format('ddd D MMM HH:mm')}</span>
+          </div>
+        )}
+        {datesToShow.length !== dates.length && (
+          <span style={{ color: 'grey' }}>{`+${dates.length} more`}</span>
+        )}
+        <br />
+      </div>
+    ));
+  }
+  return null;
+};
+
+EventDates.defaultProps = {
+  addLabel: true,
+};
+
+export default EventDates;

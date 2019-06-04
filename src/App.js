@@ -1,25 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Admin, Resource } from 'react-admin';
+
+import dataProvider from './services/api';
+import authProvider from './services/api/auth';
+
+import VenueList from './components/VenueList';
+import VenueEdit from './components/VenueEdit';
+import TagList from './components/TagList';
+import TagEdit from './components/TagEdit';
+import TagCreate from './components/TagCreate';
+import EventList from './components/EventList';
+import EventEdit from './components/EventEdit';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Admin dataProvider={dataProvider} authProvider={authProvider}>
+      <Resource name="events" list={EventList} edit={EventEdit} />
+      <Resource name="venues" list={VenueList} edit={VenueEdit} />
+      <Resource name="tags" list={TagList} edit={TagEdit} create={TagCreate} />
+    </Admin>
   );
 }
 
