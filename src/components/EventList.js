@@ -8,6 +8,7 @@ import {
   Datagrid,
   TextField,
   ReferenceField,
+  DateInput,
 } from 'react-admin';
 
 import GoogleImage from './GoogleImage';
@@ -16,6 +17,7 @@ import EventDates from './EventDates';
 const EventFilter = props => (
   <Filter {...props}>
     <TextInput label="Search" source="text" alwaysOn />
+    <DateInput source="dateFrom" />
     <ReferenceInput
       label="Venue"
       source="organiser.venue"
@@ -30,7 +32,7 @@ const EventFilter = props => (
 
 function EventList(props) {
   return (
-    <List {...props} filters={<EventFilter/>}>
+    <List {...props} filters={<EventFilter/>} filterDefaultValues={{ dateFrom: new Date() }}>
       <Datagrid rowClick="edit">
         <GoogleImage source="images[0].url" size="48" label="" />
         <ReferenceField

@@ -14,6 +14,9 @@ export default async (type, params) => {
   switch (type) {
     case GET_LIST: {
       const { pagination, filter = {} } = params;
+      if (filter.dateFrom) {
+        filter.dateFrom = new Date(filter.dateFrom).toISOString();
+      }
       if (filter.organiser) {
         filter.venue = filter.organiser.venue;
         delete filter.organiser;
