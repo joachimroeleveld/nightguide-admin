@@ -6,17 +6,24 @@ import authProvider from './services/api/auth';
 
 import VenueList from './components/VenueList';
 import VenueEdit from './components/VenueEdit';
+import VenueShow from './components/VenueShow';
 import TagList from './components/TagList';
 import TagEdit from './components/TagEdit';
 import TagCreate from './components/TagCreate';
 import EventList from './components/EventList';
+import EventShow from './components/EventShow';
 import EventEdit from './components/EventEdit';
 
 function App() {
   return (
     <Admin dataProvider={dataProvider} authProvider={authProvider}>
-      <Resource name="events" list={EventList} edit={EventEdit} />
-      <Resource name="venues" list={VenueList} edit={VenueEdit} />
+      <Resource name="events" show={EventShow} list={EventList} edit={EventEdit} />
+      <Resource
+        name="venues"
+        list={VenueList}
+        edit={VenueEdit}
+        show={VenueShow}
+      />
       <Resource name="tags" list={TagList} edit={TagEdit} create={TagCreate} />
     </Admin>
   );

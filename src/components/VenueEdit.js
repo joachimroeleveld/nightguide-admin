@@ -8,6 +8,8 @@ import {
   TextInput,
 } from 'react-admin';
 
+// import TranslatableTextInput from './TranslatableTextInput';
+
 function VenueEdit(props) {
   return (
     <Edit {...props}>
@@ -17,6 +19,7 @@ function VenueEdit(props) {
         <ReferenceArrayInput label="Tags" reference="tags" source="tags">
           <SelectArrayInput optionText="id" />
         </ReferenceArrayInput>
+        {/*<TranslatableTextInput source="description" />*/}
       </SimpleForm>
     </Edit>
   );

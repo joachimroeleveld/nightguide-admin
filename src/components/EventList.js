@@ -1,8 +1,6 @@
 import React from 'react';
 import {
   Filter,
-  ReferenceInput,
-  SelectInput,
   TextInput,
   List,
   Datagrid,
@@ -18,27 +16,23 @@ const EventFilter = props => (
   <Filter {...props}>
     <TextInput label="Search" source="text" alwaysOn />
     <DateInput source="dateFrom" />
-    <ReferenceInput
-      label="Venue"
-      source="organiser.venue"
-      reference="venues"
-      allowEmpty
-      alwaysOn
-    >
-      <SelectInput optionText="name" />
-    </ReferenceInput>
   </Filter>
 );
 
 function EventList(props) {
   return (
-    <List {...props} filters={<EventFilter/>} filterDefaultValues={{ dateFrom: new Date() }}>
-      <Datagrid rowClick="edit">
+    <List
+      {...props}
+      filters={<EventFilter />}
+      filterDefaultValues={{ dateFrom: new Date() }}
+    >
+      <Datagrid rowClick="show">
         <GoogleImage source="images[0].url" size="48" label="" />
         <ReferenceField
           label="Venue"
           source="organiser.venue"
           reference="venues"
+          linkType="show"
         >
           <TextField source="name" />
         </ReferenceField>

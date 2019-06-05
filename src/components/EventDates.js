@@ -11,7 +11,7 @@ const EventDates = ({ source, record = {}, items = 3 }) => {
     return (
       <div>
         {datesToShow.map((date, index) => (
-          <date key={index}>
+          <div key={index}>
             {sameDay && (
               <div>
                 <span>{moment(date.from).format('ddd D MMM')}</span>
@@ -28,7 +28,7 @@ const EventDates = ({ source, record = {}, items = 3 }) => {
                 <span>{moment(date.to).format('ddd D MMM HH:mm')}</span>
               </div>
             )}
-          </date>
+          </div>
         ))}
         {datesToShow.length !== dates.length && (
           <span style={{ color: 'grey' }}>{`+${dates.length} more`}</span>
