@@ -8,7 +8,8 @@ import {
   TextInput,
 } from 'react-admin';
 
-// import TranslatableTextInput from './TranslatableTextInput';
+import { __src } from '../services/i18n';
+import TranslatedTextInput from './TranslatedTextInput';
 
 function VenueEdit(props) {
   return (
@@ -17,9 +18,13 @@ function VenueEdit(props) {
         <TextField source="id" />
         <TextInput source="name" />
         <ReferenceArrayInput label="Tags" reference="tags" source="tags">
-          <SelectArrayInput optionText="id" />
+          <SelectArrayInput optionText={__src('name')} />
         </ReferenceArrayInput>
-        {/*<TranslatableTextInput source="description" />*/}
+        <TranslatedTextInput
+          rich={true}
+          source="description"
+          label="Description"
+        />
       </SimpleForm>
     </Edit>
   );

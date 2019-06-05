@@ -10,6 +10,7 @@ import {
   Datagrid,
 } from 'react-admin';
 
+import { __src } from '../services/i18n';
 import EventDates from '../components/EventDates';
 import GoogleImage from '../components/GoogleImage';
 
@@ -18,9 +19,10 @@ function VenueEdit(props) {
     <Show {...props}>
       <SimpleShowLayout>
         <TextField source="name" />
+        <TextField source={__src('description')} />
         <ReferenceArrayField label="Tags" reference="tags" source="tags">
           <SingleFieldList>
-            <ChipField source="id" />
+            <ChipField source={__src('name')} />
           </SingleFieldList>
         </ReferenceArrayField>
         <ReferenceManyField label="Events" reference="events" target="venue">

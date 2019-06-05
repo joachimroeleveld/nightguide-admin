@@ -15,6 +15,7 @@ import {
 import GoogleImage from './GoogleImage';
 import FbEventUrl from './FbEventUrl';
 import EventDates from './EventDates';
+import { __src } from '../services/i18n';
 
 function EventEdit(props) {
   return (
@@ -30,6 +31,7 @@ function EventEdit(props) {
             <TextField source="name" />
           </ReferenceField>
           <TextField source="title" />
+          <TextField source={__src('description')} />
           <EventDates source="dates" />
           <ArrayField source="images">
             <SingleFieldList>
@@ -38,7 +40,7 @@ function EventEdit(props) {
           </ArrayField>
           <ReferenceArrayField label="Tags" reference="tags" source="tags">
             <SingleFieldList>
-              <ChipField source="id" />
+              <ChipField source={__src('name')} />
             </SingleFieldList>
           </ReferenceArrayField>
         </Tab>

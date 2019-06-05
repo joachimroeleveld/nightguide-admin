@@ -9,12 +9,15 @@ import {
 } from 'react-admin';
 
 import GoogleImage from './GoogleImage';
+import { __src } from '../services/i18n';
+import TranslatedTextInput from './TranslatedTextInput';
 
 function EventEdit(props) {
   return (
     <Edit {...props}>
       <SimpleForm>
         <TextInput source="title" />
+        <TranslatedTextInput source="description" />
         <ImageInput
           source="images"
           accept="image/*"
@@ -24,7 +27,7 @@ function EventEdit(props) {
           <GoogleImage source="url" size={230} />
         </ImageInput>
         <ReferenceArrayInput label="Tags" reference="tags" source="tags">
-          <SelectArrayInput optionText="id" />
+          <SelectArrayInput optionText={__src('name')} />
         </ReferenceArrayInput>
       </SimpleForm>
     </Edit>
