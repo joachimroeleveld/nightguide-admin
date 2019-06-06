@@ -9,4 +9,8 @@ const TranslatedTextInput = props => {
   return <InputComponent {...props} source={`${source}.en`} />;
 };
 
+TranslatedTextInput.defaultProps = {
+  addLabel: true,
+};
+
 export default TranslatedTextInput;

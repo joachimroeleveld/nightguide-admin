@@ -32,7 +32,7 @@ export default (type, params) => {
     }
     case GET_MANY: {
       const { ids } = params;
-      return request(`/tags`);
+      return request(`/tags`, { query: { ids } });
     }
   }
 };

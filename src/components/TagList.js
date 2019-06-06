@@ -7,6 +7,7 @@ function TagList(props) {
   return (
     <List {...props}>
       <Datagrid rowClick="edit">
+        <TextField source="slug" />
         <TextField source={__src('name')} />
       </Datagrid>
     </List>

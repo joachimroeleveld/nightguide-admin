@@ -17,7 +17,7 @@ function EventEdit(props) {
     <Edit {...props}>
       <SimpleForm>
         <TextInput source="title" />
-        <TranslatedTextInput source="description" />
+        <TranslatedTextInput source="description" rich={true} />
         <ImageInput
           source="images"
           accept="image/*"
