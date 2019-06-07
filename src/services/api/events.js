@@ -17,12 +17,13 @@ export default async (type, params) => {
       return getList(params);
     }
     case GET_ONE: {
-      const { id } = params;
-      return request(`/events/${id}`);
+      const { id, query = {} } = params;
+      query.populate = ['images'];
+      return request(`/events/${id}`, { query });
     }
     case GET_MANY: {
       const { ids } = params;
-      return request(`/events`, { query: { ids: ids.join(',') } });
+      return request(`/events`, { query: { ids: ids.join(',') || undefined } });
     }
     case UPDATE: {
       const { id, data, previousData } = params;

@@ -24,12 +24,13 @@ export default (type, params) => {
       });
     }
     case GET_ONE: {
-      const { id } = params;
-      return request(`/venues/${id}`);
+      const { id, query = {} } = params;
+      query.populate = ['images'];
+      return request(`/venues/${id}`, { query });
     }
     case GET_MANY: {
       const { ids } = params;
-      return request(`/venues`, { query: { ids: ids.join(',') } });
+      return request(`/venues`, { query: { ids: ids.join(',') || undefined } });
     }
     case UPDATE: {
       const { id, data } = params;
