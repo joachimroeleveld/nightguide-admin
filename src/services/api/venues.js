@@ -6,21 +6,11 @@ export default (type, params) => {
   switch (type) {
     case GET_LIST: {
       const { pagination, filter = {} } = params;
-      const { query: textFilter, filters = {} } = filter;
-      const qs = {
-        // Add filters
-        ...Object.keys(filters).reduce(
-          (acc, item) => ({
-            ...acc,
-            [`filter[${item}]`]: filters[item],
-          }),
-          {}
-        ),
-        query: textFilter,
-      };
       return request('/venues', {
         pagination,
-        query: qs,
+        query: {
+          ...filter,
+        },
       });
     }
     case GET_ONE: {
