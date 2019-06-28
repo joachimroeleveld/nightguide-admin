@@ -8,16 +8,15 @@ import {
   FormDataConsumer,
 } from 'react-admin';
 
-import CityFilterUpdater from './CityFilterUpdater';
+import PageSlugFilterUpdater from './PageSlugFilterUpdater';
 
 const VenueFilter = props => (
   <Filter {...props}>
     <FormDataConsumer form="filterForm" source="foo" alwaysOn>
-      {({ dispatch }) => <CityFilterUpdater formDispatch={dispatch} />}
+      {({ dispatch }) => <PageSlugFilterUpdater formDispatch={dispatch} />}
     </FormDataConsumer>
     <TextInput label="Search" source="query" alwaysOn />
-    <TextInput label="City" source="location.city" />
-    <TextInput label="Country" source="location.country" />
+    <TextInput label="Page slug" source="pageSlug" />
   </Filter>
 );
 

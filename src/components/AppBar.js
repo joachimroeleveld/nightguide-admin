@@ -10,7 +10,7 @@ import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import { AppBar as RaAppBar } from 'react-admin';
 
-import { setCityConfig, setCity } from '../state/cities';
+import { setCityConfig, setPageSlug } from '../state/cities';
 import apiRequest from '../services/api/request';
 
 const styles = theme =>
@@ -24,7 +24,7 @@ const styles = theme =>
   });
 
 const CitySwitcher = withStyles(styles)(props => {
-  const { classes, cityConfig, city, setCity, setCityConfig } = props;
+  const { classes, cityConfig, pageSlug, setPageSlug, setCityConfig } = props;
 
   useEffect(() => {
     async function fetchConfig() {
@@ -35,31 +35,25 @@ const CitySwitcher = withStyles(styles)(props => {
   }, []);
 
   function handleChange(event) {
-    setCity(event.target.value);
+    setPageSlug(event.target.value);
   }
-
-  const cities = _(cityConfig)
-    .values()
-    .map(country => _.keys(country))
-    .flatten()
-    .value();
 
   return (
     <form className={classes.root}>
       <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="city">City</InputLabel>
+        <InputLabel htmlFor="page-slug">City page</InputLabel>
         <Select
-          value={city || 'none'}
+          value={pageSlug || 'none'}
           onChange={handleChange}
           inputProps={{
-            name: 'city',
-            id: 'city',
+            name: 'page-slug',
+            id: 'page-slug',
           }}
         >
           <MenuItem value={'none'}>{'None'}</MenuItem>
-          {cities.map(city => (
-            <MenuItem key={city} value={city}>
-              {city}
+          {_.keys(cityConfig).map(pageSlug => (
+            <MenuItem key={pageSlug} value={pageSlug}>
+              {pageSlug}
             </MenuItem>
           ))}
         </Select>
@@ -70,8 +64,8 @@ const CitySwitcher = withStyles(styles)(props => {
 
 const AppBar = ({
   classes,
-  city,
-  setCity,
+  pageSlug,
+  setPageSlug,
   setCityConfig,
   cityConfig,
   ...props
@@ -79,8 +73,8 @@ const AppBar = ({
   <RaAppBar {...props}>
     <CitySwitcher
       cityConfig={cityConfig}
-      city={city}
-      setCity={setCity}
+      pageSlug={pageSlug}
+      setPageSlug={setPageSlug}
       setCityConfig={setCityConfig}
     />
     <Typography
@@ -96,9 +90,9 @@ const enhance = compose(
   connect(
     state => ({
       cityConfig: state.cities.cityConfig,
-      city: state.cities.city,
+      pageSlug: state.cities.pageSlug,
     }),
-    { setCity, setCityConfig }
+    { setPageSlug, setCityConfig }
   ),
   withStyles(styles)
 );

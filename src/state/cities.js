@@ -1,12 +1,9 @@
-import _ from 'lodash';
-
 const defaultState = {
   cityConfig: {},
-  city: null,
-  country: null,
+  pageSlug: null
 };
 
-export const SET_CITY = 'SET_CITY';
+export const SET_PAGE_SLUG = 'SET_PAGE_SLUG';
 export const SET_CITY_CONFIG = 'SET_CITY_CONFIG';
 
 export const setCityConfig = payload => ({
@@ -14,18 +11,16 @@ export const setCityConfig = payload => ({
   payload,
 });
 
-export const setCity = payload => ({
-  type: SET_CITY,
+export const setPageSlug = payload => ({
+  type: SET_PAGE_SLUG,
   payload,
 });
 
 export default (previousState = defaultState, { type, payload }) => {
-  if (type === 'SET_CITY') {
-    const country = _.findKey(previousState.cityConfig, val => val[payload]);
+  if (type === 'SET_PAGE_SLUG') {
     return {
       ...previousState,
-      city: payload,
-      country,
+      pageSlug: payload,
     };
   }
   if (type === 'SET_CITY_CONFIG') {

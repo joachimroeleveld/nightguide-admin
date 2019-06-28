@@ -12,17 +12,16 @@ import {
 
 import GoogleImage from './GoogleImage';
 import EventDates from './EventDates';
-import CityFilterUpdater from './CityFilterUpdater';
+import PageSlugFilterUpdater from './PageSlugFilterUpdater';
 
 const EventFilter = props => {
   return (
     <Filter {...props}>
       <FormDataConsumer form="filterForm" source="foo" alwaysOn>
-        {({ dispatch }) => <CityFilterUpdater formDispatch={dispatch} />}
+        {({ dispatch }) => <PageSlugFilterUpdater formDispatch={dispatch} />}
       </FormDataConsumer>
       <TextInput label="Search" source="text" alwaysOn />
-      <TextInput label="City" source="location.city" />
-      <TextInput label="Country" source="location.country" />
+      <TextInput source="pageSlug" />
       <DateInput source="dateFrom" />
       <DateInput source="dateTo" />
     </Filter>
