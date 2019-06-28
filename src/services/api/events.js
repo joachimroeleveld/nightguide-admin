@@ -1,7 +1,6 @@
 import {
   GET_LIST,
   GET_ONE,
-  CREATE,
   UPDATE,
   DELETE,
   GET_MANY,
@@ -22,8 +21,7 @@ export default async (type, params) => {
       return request(`/events/${id}`, { query });
     }
     case GET_MANY: {
-      const { ids } = params;
-      return request(`/events`, { query: { ids: ids.join(',') || undefined } });
+      return getList(params);
     }
     case UPDATE: {
       const { id, data, previousData } = params;
@@ -50,7 +48,7 @@ export default async (type, params) => {
 };
 
 function getList(opts) {
-  const { pagination, filter = {} } = opts;
+  const { pagination, filter = {}, ids } = opts;
   if (filter.dateFrom) {
     filter.dateFrom = new Date(filter.dateFrom).toISOString();
   }
@@ -61,7 +59,11 @@ function getList(opts) {
   return request('/events', {
     pagination,
     fields: ['facebook', 'title', 'images', 'dates', 'organiser'],
-    query: { ...filter },
+    query: {
+      ids,
+      ...filter,
+      populate: ['images'],
+    },
   });
 }
 

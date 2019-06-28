@@ -5,13 +5,7 @@ import request from './request';
 export default (type, params) => {
   switch (type) {
     case GET_LIST: {
-      const { pagination, filter = {} } = params;
-      return request('/venues', {
-        pagination,
-        query: {
-          ...filter,
-        },
-      });
+      return getList(params);
     }
     case GET_ONE: {
       const { id, query = {} } = params;
@@ -19,8 +13,7 @@ export default (type, params) => {
       return request(`/venues/${id}`, { query });
     }
     case GET_MANY: {
-      const { ids } = params;
-      return request(`/venues`, { query: { ids: ids.join(',') || undefined } });
+      return getList(params);
     }
     case UPDATE: {
       const { id, data } = params;
@@ -32,3 +25,17 @@ export default (type, params) => {
     }
   }
 };
+
+function getList(opts) {
+  const { pagination, filter = {}, ids } = opts;
+
+  return request('/venues', {
+    pagination,
+    fields: ['images', 'name'],
+    query: {
+      ids,
+      ...filter,
+      populate: ['images'],
+    },
+  });
+}

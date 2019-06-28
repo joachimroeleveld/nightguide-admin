@@ -30,7 +30,6 @@ function VenueEdit(props) {
             <GoogleImage source="images[0].url" size="48" label="" />
             <EventDates source="dates" label="Next date" items={1} />
             <TextField source="title" />
-            <TextField source="facebook.id" />
             <TextField source="facebook.title" />
           </Datagrid>
         </ReferenceManyField>

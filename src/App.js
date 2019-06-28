@@ -13,11 +13,28 @@ import TagCreate from './components/TagCreate';
 import EventList from './components/EventList';
 import EventShow from './components/EventShow';
 import EventEdit from './components/EventEdit';
+import AppLayout from './components/AppLayout';
+
+import citiesReducer from './state/cities';
 
 function App() {
+  const customReducers = {
+    cities: citiesReducer,
+  };
+
   return (
-    <Admin dataProvider={dataProvider} authProvider={authProvider}>
-      <Resource name="events" show={EventShow} list={EventList} edit={EventEdit} />
+    <Admin
+      appLayout={AppLayout}
+      dataProvider={dataProvider}
+      authProvider={authProvider}
+      customReducers={customReducers}
+    >
+      <Resource
+        name="events"
+        show={EventShow}
+        list={EventList}
+        edit={EventEdit}
+      />
       <Resource
         name="venues"
         list={VenueList}
