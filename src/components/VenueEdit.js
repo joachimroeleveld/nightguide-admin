@@ -6,6 +6,7 @@ import {
   ReferenceArrayInput,
   SelectArrayInput,
   TextInput,
+  BooleanInput,
 } from 'react-admin';
 
 import { __src } from '../services/i18n';
@@ -25,6 +26,7 @@ function VenueEdit(props) {
           source="description"
           label="Description"
         />
+        <BooleanInput source="admin.hide" label="Hide" />
       </SimpleForm>
     </Edit>
   );

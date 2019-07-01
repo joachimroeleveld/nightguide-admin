@@ -8,6 +8,7 @@ import {
   ReferenceField,
   DateInput,
   FormDataConsumer,
+  BooleanInput,
 } from 'react-admin';
 
 import GoogleImage from './GoogleImage';
@@ -21,9 +22,11 @@ const EventFilter = props => {
         {({ dispatch }) => <PageSlugFilterUpdater formDispatch={dispatch} />}
       </FormDataConsumer>
       <TextInput label="Search" source="text" alwaysOn />
-      <TextInput source="pageSlug" />
       <DateInput source="dateFrom" />
       <DateInput source="dateTo" />
+      <BooleanInput label="Hidden" source="showHidden" />
+      <BooleanInput label="Tagged" source="tagged" />
+      <TextInput source="pageSlug" />
     </Filter>
   );
 };
@@ -35,9 +38,10 @@ function EventList(props) {
       filters={<EventFilter />}
       filterDefaultValues={{
         dateFrom: new Date(),
+        tagged: false,
       }}
     >
-      <Datagrid rowClick="show">
+      <Datagrid rowClick="edit">
         <GoogleImage source="images[0].url" size="48" label="" />
         <ReferenceField
           label="Venue"

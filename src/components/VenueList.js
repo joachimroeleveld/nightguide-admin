@@ -5,6 +5,7 @@ import {
   TextField,
   Filter,
   TextInput,
+  BooleanInput,
   FormDataConsumer,
 } from 'react-admin';
 
@@ -16,13 +17,17 @@ const VenueFilter = props => (
       {({ dispatch }) => <PageSlugFilterUpdater formDispatch={dispatch} />}
     </FormDataConsumer>
     <TextInput label="Search" source="query" alwaysOn />
+    <BooleanInput label="Hidden" source="showHidden" />
     <TextInput label="Page slug" source="pageSlug" />
   </Filter>
 );
 
 function VenueList(props) {
   return (
-    <List {...props} filters={<VenueFilter />}>
+    <List
+      {...props}
+      filters={<VenueFilter />}
+    >
       <Datagrid rowClick="show">
         <TextField source="name" />
       </Datagrid>
