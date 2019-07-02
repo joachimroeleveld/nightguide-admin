@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextInput } from 'react-admin';
-import RichTextInput from 'ra-input-rich-text';
+
+import RichTextInput from './RichTextInput';
 
 const TranslatedTextInput = props => {
   const { source, rich = false, ...otherProps } = props;

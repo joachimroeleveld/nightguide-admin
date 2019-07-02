@@ -17,7 +17,7 @@ const VenueFilter = props => (
       {({ dispatch }) => <PageSlugFilterUpdater formDispatch={dispatch} />}
     </FormDataConsumer>
     <TextInput label="Search" source="query" alwaysOn />
-    <BooleanInput label="Hidden" source="showHidden" />
+    <BooleanInput label="Show hidden" source="showHidden" />
     <TextInput label="Page slug" source="pageSlug" />
   </Filter>
 );

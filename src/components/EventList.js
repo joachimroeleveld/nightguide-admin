@@ -24,7 +24,7 @@ const EventFilter = props => {
       <TextInput label="Search" source="text" alwaysOn />
       <DateInput source="dateFrom" />
       <DateInput source="dateTo" />
-      <BooleanInput label="Hidden" source="showHidden" />
+      <BooleanInput label="Show hidden" source="showHidden" />
       <BooleanInput label="Tagged" source="tagged" />
       <TextInput source="pageSlug" />
     </Filter>
