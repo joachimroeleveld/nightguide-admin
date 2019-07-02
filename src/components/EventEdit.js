@@ -36,8 +36,12 @@ function EventEdit(props) {
           <BooleanInput source="admin.hide" label="Hide" />
         </FormTab>
         <FormTab label="Events">
-          <TextInput label="Ticket page URL" source="events.url" type="url" />
-          <NumberInput label="From price" source="events.priceFrom" />
+          <TextInput
+            label="Ticket page URL"
+            source="tickets.checkoutUrl"
+            type="url"
+          />
+          <NumberInput label="From price" source="tickets.priceFrom" />
         </FormTab>
         <FormTab label="Video">
           <TextInput label="Video URL" source="videoUrl" type="url" />
