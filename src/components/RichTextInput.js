@@ -72,6 +72,16 @@ export class RichTextInput extends React.Component {
     } = this.props;
 
     const options = {
+      formats: [
+        'bold',
+        'header',
+        'italic',
+        'link',
+        'list',
+        'blockquote',
+        'image',
+        'indent',
+      ],
       modules: {
         clipboard: {
           matchVisual: false,
