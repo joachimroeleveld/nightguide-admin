@@ -3,7 +3,13 @@ import moment from 'moment';
 import _ from 'lodash';
 
 const EventDates = ({ source, record = {}, items = 3 }) => {
-  const dates = _.get(record, source);
+  let dates = _.get(record, source);
+  if (!dates) return;
+
+  if (dates.from) {
+    dates = [dates];
+  }
+
   if (dates && dates.length) {
     const sameDay = moment(dates[0].from).isSame(dates[0].to, 'day');
     const datesToShow = dates.slice(0, items ? items : dates.length);

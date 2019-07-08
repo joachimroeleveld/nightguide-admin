@@ -51,7 +51,7 @@ function EventList(props) {
         >
           <TextField source="name" />
         </ReferenceField>
-        <EventDates source="dates" label="Next date" items={1} />
+        <EventDates source="date" label="Next date" items={1} />
         <TextField source="title" />
         <TextField source="facebook.title" />
       </Datagrid>
