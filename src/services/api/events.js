@@ -58,7 +58,7 @@ function getList(opts) {
   }
   return request('/events', {
     pagination,
-    fields: ['facebook', 'title', 'images', 'dates', 'organiser'],
+    fields: ['facebook', 'title', 'images', 'date', 'organiser'],
     query: {
       ids,
       ...filter,
