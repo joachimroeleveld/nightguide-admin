@@ -62,6 +62,7 @@ function getList(opts) {
     query: {
       ids,
       ...filter,
+      sortBy: ['date.from:asc', '_id:asc'].join(','),
       populate: ['images'],
     },
   });
