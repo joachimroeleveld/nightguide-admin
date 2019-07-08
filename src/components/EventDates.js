@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 const EventDates = ({ source, record = {}, items = 3 }) => {
   let dates = _.get(record, source);
-  if (!dates) return;
+  if (!dates) return null;
 
   if (dates.from) {
     dates = [dates];
