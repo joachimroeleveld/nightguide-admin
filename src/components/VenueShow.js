@@ -28,7 +28,7 @@ function VenueEdit(props) {
         <ReferenceManyField label="Events" reference="events" target="venue">
           <Datagrid rowClick="show">
             <GoogleImage source="images[0].url" size="48" label="" />
-            <EventDates source="dates" label="Next date" items={1} />
+            <EventDates source="dates" label="Next date" />
             <TextField source="title" />
             <TextField source="facebook.title" />
           </Datagrid>

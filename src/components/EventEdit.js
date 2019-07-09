@@ -23,6 +23,7 @@ import GoogleImage from './GoogleImage';
 import { __src } from '../services/i18n';
 import TranslatedTextInput from './TranslatedTextInput';
 import { getPageSlugs } from '../state/cities';
+import EventDates from './EventDates';
 
 function EventEdit(props) {
   const { pageSlug, pageSlugs, dispatch, ...otherProps } = props;
@@ -48,8 +49,11 @@ function EventEdit(props) {
               </ReferenceArrayInput>
               <BooleanInput source="admin.hide" label="Hide" />
             </FormTab>
-            {controllerProps.record && !controllerProps.record.facebook && (
-              <FormTab label="Dates">
+            <FormTab label="Dates">
+              {controllerProps.record && controllerProps.record.facebook && (
+                <EventDates source="dates" label="Dates" toShow={false} />
+              )}
+              {controllerProps.record && !controllerProps.record.facebook && (
                 <ArrayInput validate={required()} source="dates">
                   <SimpleFormIterator>
                     <DateTimeInput validate={required()} source="from" />
@@ -59,8 +63,8 @@ function EventEdit(props) {
                     />
                   </SimpleFormIterator>
                 </ArrayInput>
-              </FormTab>
-            )}
+              )}
+            </FormTab>
             <FormTab label="Lineup">
               <ReferenceArrayInput
                 label="Artists"
