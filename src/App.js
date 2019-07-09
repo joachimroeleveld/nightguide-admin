@@ -10,6 +10,9 @@ import VenueShow from './components/VenueShow';
 import TagList from './components/TagList';
 import TagEdit from './components/TagEdit';
 import TagCreate from './components/TagCreate';
+import ArtistList from './components/ArtistList';
+import ArtistEdit from './components/ArtistEdit';
+import ArtistCreate from './components/ArtistCreate';
 import EventList from './components/EventList';
 import EventShow from './components/EventShow';
 import EventCreate from './components/EventCreate';
@@ -44,6 +47,12 @@ function App() {
         show={VenueShow}
       />
       <Resource name="tags" list={TagList} edit={TagEdit} create={TagCreate} />
+      <Resource
+        name="artists"
+        list={ArtistList}
+        edit={ArtistEdit}
+        create={ArtistCreate}
+      />
     </Admin>
   );
 }

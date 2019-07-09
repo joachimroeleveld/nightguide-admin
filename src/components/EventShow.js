@@ -13,7 +13,7 @@ import {
   ReferenceField,
   UrlField,
   NumberField,
-  BooleanField
+  BooleanField,
 } from 'react-admin';
 
 import GoogleImage from './GoogleImage';
@@ -40,11 +40,6 @@ function EventEdit(props) {
               <TextField source="title" />
               <TextField source={__src('description')} />
               <EventDates source="dates" />
-              <ArrayField source="images">
-                <SingleFieldList>
-                  <GoogleImage source="url" size={230} />
-                </SingleFieldList>
-              </ArrayField>
               <ReferenceArrayField label="Tags" reference="tags" source="tags">
                 <SingleFieldList>
                   <ChipField source={__src('name')} />
@@ -63,6 +58,17 @@ function EventEdit(props) {
                 />
               </Tab>
             )}
+            <Tab label="Artists">
+              <ReferenceArrayField
+                label="Names"
+                reference="artists"
+                source="artists"
+              >
+                <SingleFieldList>
+                  <ChipField source="name" />
+                </SingleFieldList>
+              </ReferenceArrayField>
+            </Tab>
             <Tab label="Tickets">
               <UrlField
                 label="Ticket page URL"
@@ -71,7 +77,12 @@ function EventEdit(props) {
               />
               <NumberField label="From price" source="tickets.priceFrom" />
             </Tab>
-            <Tab label="Video">
+            <Tab label="Media">
+              <ArrayField source="images">
+                <SingleFieldList>
+                  <GoogleImage source="url" size={230} />
+                </SingleFieldList>
+              </ArrayField>
               <UrlField label="Video URL" source="videoUrl" type="url" />
             </Tab>
           </TabbedShowLayout>

@@ -17,6 +17,7 @@ import {
   SimpleFormIterator,
   DateTimeInput,
   SelectInput,
+  AutocompleteArrayInput,
 } from 'react-admin';
 
 import GoogleImage from './GoogleImage';
@@ -41,14 +42,6 @@ function EventCreate(props) {
           />
           <TextInput validate={required()} source="title" />
           <TranslatedTextInput source="description" rich={true} />
-          <ImageInput
-            source="images"
-            accept="image/*"
-            maxSize={5000000} // 5MB
-            multiple
-          >
-            <GoogleImage source="url" size={230} />
-          </ImageInput>
           <ReferenceArrayInput label="Tags" reference="tags" source="tags">
             <SelectArrayInput optionText={__src('name')} />
           </ReferenceArrayInput>
@@ -78,6 +71,15 @@ function EventCreate(props) {
             <AutocompleteInput optionText="name" />
           </ReferenceInput>
         </FormTab>
+        <FormTab label="Lineup">
+          <ReferenceArrayInput
+            label="Artists"
+            source="artists"
+            reference="artists"
+          >
+            <AutocompleteArrayInput optionText="name" />
+          </ReferenceArrayInput>
+        </FormTab>
         <FormTab label="Tickets">
           <TextInput
             label="Ticket page URL"
@@ -86,7 +88,15 @@ function EventCreate(props) {
           />
           <NumberInput label="From price" source="tickets.priceFrom" />
         </FormTab>
-        <FormTab label="Video">
+        <FormTab label="Media">
+          <ImageInput
+            source="images"
+            accept="image/*"
+            maxSize={5000000} // 5MB
+            multiple
+          >
+            <GoogleImage source="url" size={230} />
+          </ImageInput>
           <TextInput label="Video URL" source="videoUrl" type="url" />
         </FormTab>
       </TabbedForm>

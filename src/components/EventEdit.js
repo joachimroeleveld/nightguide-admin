@@ -15,6 +15,7 @@ import {
   DateTimeInput,
   required,
   SelectInput,
+  AutocompleteInput,
 } from 'react-admin';
 import { connect } from 'react-redux';
 
@@ -42,14 +43,6 @@ function EventEdit(props) {
               />
               <TextInput source="title" />
               <TranslatedTextInput source="description" rich={true} />
-              <ImageInput
-                source="images"
-                accept="image/*"
-                maxSize={5000000} // 5MB
-                multiple
-              >
-                <GoogleImage source="url" size={230} />
-              </ImageInput>
               <ReferenceArrayInput label="Tags" reference="tags" source="tags">
                 <SelectArrayInput optionText={__src('name')} />
               </ReferenceArrayInput>
@@ -68,6 +61,15 @@ function EventEdit(props) {
                 </ArrayInput>
               </FormTab>
             )}
+            <FormTab label="Lineup">
+              <ReferenceArrayInput
+                label="Artists"
+                source="artists"
+                reference="artists"
+              >
+                <AutocompleteInput optionText="name" />
+              </ReferenceArrayInput>
+            </FormTab>
             <FormTab label="Tickets">
               <TextInput
                 label="Ticket page URL"
@@ -76,7 +78,15 @@ function EventEdit(props) {
               />
               <NumberInput label="From price" source="tickets.priceFrom" />
             </FormTab>
-            <FormTab label="Video">
+            <FormTab label="Media">
+              <ImageInput
+                source="images"
+                accept="image/*"
+                maxSize={5000000} // 5MB
+                multiple
+              >
+                <GoogleImage source="url" size={230} />
+              </ImageInput>
               <TextInput label="Video URL" source="videoUrl" type="url" />
             </FormTab>
           </TabbedForm>
