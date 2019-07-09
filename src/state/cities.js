@@ -1,10 +1,12 @@
 const defaultState = {
   cityConfig: {},
-  pageSlug: null
+  pageSlug: null,
 };
 
 export const SET_PAGE_SLUG = 'SET_PAGE_SLUG';
 export const SET_CITY_CONFIG = 'SET_CITY_CONFIG';
+
+export const getPageSlugs = state => Object.keys(state.cities.cityConfig);
 
 export const setCityConfig = payload => ({
   type: SET_CITY_CONFIG,

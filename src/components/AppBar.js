@@ -10,7 +10,7 @@ import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import { AppBar as RaAppBar } from 'react-admin';
 
-import { setCityConfig, setPageSlug } from '../state/cities';
+import { setCityConfig, setPageSlug, getPageSlugs } from '../state/cities';
 import apiRequest from '../services/api/request';
 
 const styles = theme =>
@@ -24,7 +24,7 @@ const styles = theme =>
   });
 
 const CitySwitcher = withStyles(styles)(props => {
-  const { classes, cityConfig, pageSlug, setPageSlug, setCityConfig } = props;
+  const { classes, pageSlugs, pageSlug, setPageSlug, setCityConfig } = props;
 
   useEffect(() => {
     async function fetchConfig() {
@@ -51,7 +51,7 @@ const CitySwitcher = withStyles(styles)(props => {
           }}
         >
           <MenuItem value={'none'}>{'None'}</MenuItem>
-          {_.keys(cityConfig).map(pageSlug => (
+          {pageSlugs.map(pageSlug => (
             <MenuItem key={pageSlug} value={pageSlug}>
               {pageSlug}
             </MenuItem>
@@ -67,12 +67,12 @@ const AppBar = ({
   pageSlug,
   setPageSlug,
   setCityConfig,
-  cityConfig,
+  pageSlugs,
   ...props
 }) => (
   <RaAppBar {...props}>
     <CitySwitcher
-      cityConfig={cityConfig}
+      pageSlugs={pageSlugs}
       pageSlug={pageSlug}
       setPageSlug={setPageSlug}
       setCityConfig={setCityConfig}
@@ -89,8 +89,8 @@ const AppBar = ({
 const enhance = compose(
   connect(
     state => ({
-      cityConfig: state.cities.cityConfig,
       pageSlug: state.cities.pageSlug,
+      pageSlugs: getPageSlugs(state),
     }),
     { setPageSlug, setCityConfig }
   ),

@@ -12,6 +12,7 @@ import TagEdit from './components/TagEdit';
 import TagCreate from './components/TagCreate';
 import EventList from './components/EventList';
 import EventShow from './components/EventShow';
+import EventCreate from './components/EventCreate';
 import EventEdit from './components/EventEdit';
 import AppLayout from './components/AppLayout';
 
@@ -33,6 +34,7 @@ function App() {
         name="events"
         show={EventShow}
         list={EventList}
+        create={EventCreate}
         edit={EventEdit}
       />
       <Resource

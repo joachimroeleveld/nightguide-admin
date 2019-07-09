@@ -9,19 +9,34 @@ import {
   DateInput,
   FormDataConsumer,
   BooleanInput,
+  ReferenceInput,
+  AutocompleteInput,
 } from 'react-admin';
+import { connect } from 'react-redux';
 
 import GoogleImage from './GoogleImage';
 import EventDates from './EventDates';
 import PageSlugFilterUpdater from './PageSlugFilterUpdater';
 
-const EventFilter = props => {
+const EventFilter = connect(state => ({
+  pageSlug: state.cities.pageSlug,
+}))(props => {
+  const { pageSlug, ...otherProps } = props;
   return (
-    <Filter {...props}>
+    <Filter {...otherProps}>
       <FormDataConsumer form="filterForm" source="foo" alwaysOn>
         {({ dispatch }) => <PageSlugFilterUpdater formDispatch={dispatch} />}
       </FormDataConsumer>
       <TextInput label="Search" source="text" alwaysOn />
+      <ReferenceInput
+        label="Venue"
+        source="venue"
+        reference="venues"
+        filter={{ pageSlug }}
+        alwaysOn
+      >
+        <AutocompleteInput optionText="name" />
+      </ReferenceInput>
       <DateInput source="dateFrom" />
       <DateInput source="dateTo" />
       <BooleanInput label="Show hidden" source="showHidden" />
@@ -29,7 +44,7 @@ const EventFilter = props => {
       <TextInput source="pageSlug" />
     </Filter>
   );
-};
+});
 
 function EventList(props) {
   return (
@@ -47,7 +62,7 @@ function EventList(props) {
           label="Venue"
           source="organiser.venue"
           reference="venues"
-          linkType="show"
+          linkType={false}
         >
           <TextField source="name" />
         </ReferenceField>

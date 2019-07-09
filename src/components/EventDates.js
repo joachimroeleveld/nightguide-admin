@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import moment from 'moment';
 import _ from 'lodash';
 
-const EventDates = ({ source, record = {}, items = 3 }) => {
+const EventDates = ({ source, record = {}, toShow = 3 }) => {
   let dates = _.get(record, source);
+
+  const [showDates, setShowDates] = useState(false);
+
   if (!dates) return null;
 
   if (dates.from) {
@@ -12,7 +15,10 @@ const EventDates = ({ source, record = {}, items = 3 }) => {
 
   if (dates && dates.length) {
     const sameDay = moment(dates[0].from).isSame(dates[0].to, 'day');
-    const datesToShow = dates.slice(0, items ? items : dates.length);
+    const datesToShow = dates.slice(
+      0,
+      toShow ? (showDates ? dates.length : toShow) : dates.length
+    );
 
     return (
       <div>
@@ -37,7 +43,10 @@ const EventDates = ({ source, record = {}, items = 3 }) => {
           </div>
         ))}
         {datesToShow.length !== dates.length && (
-          <span style={{ color: 'grey' }}>{`+${dates.length} more`}</span>
+          <a
+            onClick={() => setShowDates(!showDates)}
+            style={{ color: 'grey', textDecoration: 'underline' }}
+          >{`+${dates.length} more`}</a>
         )}
       </div>
     );

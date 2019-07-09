@@ -28,13 +28,15 @@ export default (type, params) => {
 
 function getList(opts) {
   const { pagination, filter = {}, ids } = opts;
+  const { q, ...otherFilters } = filter;
 
   return request('/venues', {
     pagination,
     fields: ['images', 'name'],
     query: {
+      query: q ? q : undefined,
       ids,
-      ...filter,
+      ...otherFilters,
       populate: ['images'],
     },
   });

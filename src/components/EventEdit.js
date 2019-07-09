@@ -1,6 +1,7 @@
 import React from 'react';
 import {
-  Edit,
+  EditController,
+  EditView,
   ReferenceArrayInput,
   TextInput,
   SelectArrayInput,
@@ -9,46 +10,83 @@ import {
   BooleanInput,
   FormTab,
   NumberInput,
+  ArrayInput,
+  SimpleFormIterator,
+  DateTimeInput,
+  required,
+  SelectInput,
 } from 'react-admin';
+import { connect } from 'react-redux';
 
 import GoogleImage from './GoogleImage';
 import { __src } from '../services/i18n';
 import TranslatedTextInput from './TranslatedTextInput';
+import { getPageSlugs } from '../state/cities';
 
 function EventEdit(props) {
+  const { pageSlug, pageSlugs, dispatch, ...otherProps } = props;
+
   return (
-    <Edit {...props}>
-      <TabbedForm>
-        <FormTab label="General">
-          <TextInput source="title" />
-          <TranslatedTextInput source="description" rich={true} />
-          <ImageInput
-            source="images"
-            accept="image/*"
-            maxSize={5000000} // 5MB
-            multiple
-          >
-            <GoogleImage source="url" size={230} />
-          </ImageInput>
-          <ReferenceArrayInput label="Tags" reference="tags" source="tags">
-            <SelectArrayInput optionText={__src('name')} />
-          </ReferenceArrayInput>
-          <BooleanInput source="admin.hide" label="Hide" />
-        </FormTab>
-        <FormTab label="Events">
-          <TextInput
-            label="Ticket page URL"
-            source="tickets.checkoutUrl"
-            type="url"
-          />
-          <NumberInput label="From price" source="tickets.priceFrom" />
-        </FormTab>
-        <FormTab label="Video">
-          <TextInput label="Video URL" source="videoUrl" type="url" />
-        </FormTab>
-      </TabbedForm>
-    </Edit>
+    <EditController {...otherProps}>
+      {controllerProps => (
+        <EditView {...otherProps} {...controllerProps}>
+          <TabbedForm>
+            <FormTab label="General">
+              <SelectInput
+                validate={required()}
+                source="pageSlug"
+                choices={pageSlugs.map(slug => ({
+                  id: slug,
+                  name: slug,
+                }))}
+              />
+              <TextInput source="title" />
+              <TranslatedTextInput source="description" rich={true} />
+              <ImageInput
+                source="images"
+                accept="image/*"
+                maxSize={5000000} // 5MB
+                multiple
+              >
+                <GoogleImage source="url" size={230} />
+              </ImageInput>
+              <ReferenceArrayInput label="Tags" reference="tags" source="tags">
+                <SelectArrayInput optionText={__src('name')} />
+              </ReferenceArrayInput>
+              <BooleanInput source="admin.hide" label="Hide" />
+            </FormTab>
+            {controllerProps.record && !controllerProps.record.facebook && (
+              <FormTab label="Dates">
+                <ArrayInput validate={required()} source="dates">
+                  <SimpleFormIterator>
+                    <DateTimeInput validate={required()} source="from" />
+                    <DateTimeInput
+                      source="to"
+                      parse={v => (v ? v : undefined)}
+                    />
+                  </SimpleFormIterator>
+                </ArrayInput>
+              </FormTab>
+            )}
+            <FormTab label="Tickets">
+              <TextInput
+                label="Ticket page URL"
+                source="tickets.checkoutUrl"
+                type="url"
+              />
+              <NumberInput label="From price" source="tickets.priceFrom" />
+            </FormTab>
+            <FormTab label="Video">
+              <TextInput label="Video URL" source="videoUrl" type="url" />
+            </FormTab>
+          </TabbedForm>
+        </EditView>
+      )}
+    </EditController>
   );
 }
 
-export default EventEdit;
+export default connect(state => ({
+  pageSlug: state.cities.pageSlug,
+  pageSlugs: getPageSlugs(state),
+}))(EventEdit);

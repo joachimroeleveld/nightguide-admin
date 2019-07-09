@@ -1,4 +1,5 @@
 import {
+  CREATE,
   GET_LIST,
   GET_ONE,
   UPDATE,
@@ -12,6 +13,13 @@ import request from './request';
 
 export default async (type, params) => {
   switch (type) {
+    case CREATE: {
+      const { data } = params;
+      const { images, ...body } = data;
+      const res = await request(`/events`, { method: 'POST', body });
+      await updateImages(res.data.id, images);
+      return res;
+    }
     case GET_LIST: {
       return getList(params);
     }
