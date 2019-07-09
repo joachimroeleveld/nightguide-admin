@@ -14,7 +14,7 @@ import TranslatedTextInput from './TranslatedTextInput';
 
 function VenueEdit(props) {
   return (
-    <Edit {...props}>
+    <Edit undoable={false} {...props}>
       <SimpleForm>
         <TextField source="id" />
         <TextInput source="name" />

@@ -28,7 +28,7 @@ function EventEdit(props) {
   const { pageSlug, pageSlugs, dispatch, ...otherProps } = props;
 
   return (
-    <EditController {...otherProps}>
+    <EditController undoable={false} {...otherProps}>
       {controllerProps => (
         <EditView {...otherProps} {...controllerProps}>
           <TabbedForm>

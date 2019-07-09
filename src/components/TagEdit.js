@@ -4,7 +4,7 @@ import TranslatedTextInput from './TranslatedTextInput';
 
 function TagEdit(props) {
   return (
-    <Edit {...props}>
+    <Edit undoable={false} {...props}>
       <SimpleForm>
         <TextField source="id" />
         <TextInput source="slug" label="Slug" />
