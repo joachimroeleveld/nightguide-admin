@@ -21,7 +21,7 @@ import PageSlugFilterUpdater from './PageSlugFilterUpdater';
 const EventFilter = connect(state => ({
   pageSlug: state.cities.pageSlug,
 }))(props => {
-  const { pageSlug, ...otherProps } = props;
+  const { pageSlug, dispatch, ...otherProps } = props;
   return (
     <Filter {...otherProps}>
       <FormDataConsumer form="filterForm" source="foo" alwaysOn>

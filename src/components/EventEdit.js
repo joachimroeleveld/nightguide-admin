@@ -15,7 +15,7 @@ import {
   DateTimeInput,
   required,
   SelectInput,
-  AutocompleteInput,
+  AutocompleteArrayInput,
 } from 'react-admin';
 import { connect } from 'react-redux';
 
@@ -71,7 +71,7 @@ function EventEdit(props) {
                 source="artists"
                 reference="artists"
               >
-                <AutocompleteInput optionText="name" />
+                <AutocompleteArrayInput optionText="name" />
               </ReferenceArrayInput>
             </FormTab>
             <FormTab label="Tickets">
