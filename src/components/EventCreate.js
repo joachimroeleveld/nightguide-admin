@@ -18,6 +18,7 @@ import {
   DateTimeInput,
   SelectInput,
   AutocompleteArrayInput,
+  regex,
 } from 'react-admin';
 
 import GoogleImage from './GoogleImage';
@@ -52,6 +53,13 @@ function EventCreate(props) {
             <SimpleFormIterator>
               <DateTimeInput validate={required()} source="from" />
               <DateTimeInput source="to" parse={v => (v ? v : undefined)} />
+              <ReferenceArrayInput
+                label="Artists"
+                source="artists"
+                reference="artists"
+              >
+                <AutocompleteArrayInput optionText="name" />
+              </ReferenceArrayInput>
             </SimpleFormIterator>
           </ArrayInput>
         </FormTab>
@@ -71,20 +79,12 @@ function EventCreate(props) {
             <AutocompleteInput optionText="name" />
           </ReferenceInput>
         </FormTab>
-        <FormTab label="Lineup">
-          <ReferenceArrayInput
-            label="Artists"
-            source="artists"
-            reference="artists"
-          >
-            <AutocompleteArrayInput optionText="name" />
-          </ReferenceArrayInput>
-        </FormTab>
         <FormTab label="Tickets">
           <TextInput
             label="Ticket page URL"
             source="tickets.checkoutUrl"
             type="url"
+            validate={regex(/^https?:\/\/.+\..+/, 'Not a valid URL')}
           />
           <NumberInput label="From price" source="tickets.priceFrom" />
         </FormTab>
@@ -97,7 +97,12 @@ function EventCreate(props) {
           >
             <GoogleImage source="url" size={230} />
           </ImageInput>
-          <TextInput label="Video URL" source="videoUrl" type="url" />
+          <TextInput
+            label="Video URL"
+            source="videoUrl"
+            type="url"
+            validate={regex(/^https?:\/\/.+\..+/, 'Not a valid URL')}
+          />
         </FormTab>
       </TabbedForm>
     </Create>
