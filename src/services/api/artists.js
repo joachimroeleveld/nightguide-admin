@@ -12,7 +12,7 @@ import request from './request';
 export default (type, params) => {
   switch (type) {
     case GET_LIST: {
-      return request('/artists');
+      return getList(params);
     }
     case CREATE: {
       const { data } = params;
@@ -31,10 +31,18 @@ export default (type, params) => {
       return request(`/artists/${id}`, { method: 'DELETE', id });
     }
     case GET_MANY: {
-      const { ids } = params;
-      return request(`/artists`, {
-        query: { ids: ids.join(',') || undefined },
-      });
+      return getList(params);
     }
   }
 };
+
+function getList(opts) {
+  const { pagination, filter = {}, ids } = opts;
+  return request('/artists', {
+    pagination,
+    query: {
+      ids,
+      ...filter,
+    },
+  });
+}

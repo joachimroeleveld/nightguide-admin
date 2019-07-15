@@ -1,9 +1,17 @@
 import React from 'react';
-import { List, Datagrid, TextField } from 'react-admin';
+import { List, Datagrid, TextField, Filter, TextInput } from 'react-admin';
+
+const ArtistFilter = props => {
+  return (
+    <Filter {...props}>
+      <TextInput label="Search" source="query" alwaysOn />
+    </Filter>
+  );
+};
 
 function ArtistList(props) {
   return (
-    <List {...props}>
+    <List {...props} filters={<ArtistFilter />}>
       <Datagrid rowClick="edit">
         <TextField source="name" />
       </Datagrid>
