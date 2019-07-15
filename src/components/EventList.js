@@ -39,6 +39,7 @@ const EventFilter = connect(state => ({
       </ReferenceInput>
       <DateInput source="dateFrom" />
       <DateInput source="dateTo" />
+      <DateInput source="createdAfter" />
       <BooleanInput label="Show hidden" source="showHidden" />
       <BooleanInput label="Tagged" source="tagged" />
       <TextInput source="pageSlug" />
