@@ -63,25 +63,26 @@ function EventEdit(props) {
                 />
                 <ArrayInput validate={required()} source="dates">
                   <SimpleFormIterator disableAdd={() => isFbEvent}>
-                    <div style={{ margin: '1em 0', background: '#f7f7f7' }}>
-                      <DateTimeInput
-                        disabled={isFbEvent}
-                        validate={required()}
-                        source="from"
-                      />
-                      <DateTimeInput
-                        disabled={isFbEvent}
-                        source="to"
-                        parse={v => (v ? v : undefined)}
-                      />
-                      <ReferenceArrayInput
-                        label="Artists"
-                        source="artists"
-                        reference="artists"
-                      >
-                        <AutocompleteArrayInput optionText="name" />
-                      </ReferenceArrayInput>
-                    </div>
+                    <DateTimeInput
+                      disabled={isFbEvent}
+                      validate={required()}
+                      source="from"
+                    />
+                    <DateTimeInput
+                      disabled={isFbEvent}
+                      source="to"
+                      parse={v => (v ? v : undefined)}
+                    />
+                    <ReferenceArrayInput
+                      label="Artists"
+                      source="artists"
+                      reference="artists"
+                    >
+                      <AutocompleteArrayInput optionText="name" />
+                    </ReferenceArrayInput>
+                    <div
+                      style={{ border: '5px dashed #ddd', margin: '1em 0' }}
+                    />
                   </SimpleFormIterator>
                 </ArrayInput>
               </FormTab>

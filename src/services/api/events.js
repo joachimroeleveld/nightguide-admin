@@ -57,9 +57,11 @@ export default async (type, params) => {
 
 function getList(opts) {
   const { pagination, filter = {}, ids } = opts;
-  if (filter.dateFrom) {
-    filter.dateFrom = new Date(filter.dateFrom).toISOString();
-  }
+  ['dateFrom', 'dateTo', 'createdBefore', 'createdAfter'].forEach(field => {
+    if (filter[field]) {
+      filter[field] = new Date(filter[field]).toISOString();
+    }
+  });
   if (filter.organiser) {
     filter.venue = filter.organiser.venue;
     delete filter.organiser;
