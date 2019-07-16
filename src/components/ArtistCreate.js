@@ -4,7 +4,7 @@ import { Create, SimpleForm, TextInput } from 'react-admin';
 function ArtistCreate(props) {
   return (
     <Create {...props}>
-      <SimpleForm>
+      <SimpleForm redirect="list">
         <TextInput source="name" />
       </SimpleForm>
     </Create>

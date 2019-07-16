@@ -30,7 +30,7 @@ function EventCreate(props) {
   const { pageSlug, pageSlugs, dispatch, ...otherProps } = props;
   return (
     <Create {...otherProps}>
-      <TabbedForm>
+      <TabbedForm redirect="list">
         <FormTab label="General">
           <SelectInput
             validate={required()}

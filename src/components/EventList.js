@@ -40,6 +40,8 @@ const EventFilter = connect(state => ({
       <DateInput source="dateFrom" />
       <DateInput source="dateTo" />
       <DateInput source="createdAfter" />
+      <DateInput source="createdBefore" />
+      <BooleanInput label="Facebook dates changed" source="datesChanged" />
       <BooleanInput label="Show hidden" source="showHidden" />
       <BooleanInput label="Tagged" source="tagged" />
       <TextInput source="pageSlug" />
@@ -52,10 +54,7 @@ function EventList(props) {
     <List
       {...props}
       filters={<EventFilter />}
-      filterDefaultValues={{
-        dateFrom: new Date(),
-        tagged: false,
-      }}
+      filterDefaultValues={{ dateFrom: new Date() }}
     >
       <Datagrid rowClick="edit">
         <GoogleImage source="images[0].url" size="48" label="" />

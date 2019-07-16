@@ -6,8 +6,7 @@ import TranslatedTextInput from './TranslatedTextInput';
 function TagCreate(props) {
   return (
     <Create {...props}>
-      <SimpleForm>
-        <TextInput source="id" />
+      <SimpleForm redirect="list">
         <TextInput source="slug" label="Slug" />
         <TranslatedTextInput source="name" label="Name" />
       </SimpleForm>

@@ -57,27 +57,31 @@ function EventEdit(props) {
                 <BooleanInput source="admin.hide" label="Hide" />
               </FormTab>
               <FormTab label="Dates">
+                <BooleanInput
+                  source="facebook.datesChanged"
+                  label="Dates changed"
+                />
                 <ArrayInput validate={required()} source="dates">
-                  <SimpleFormIterator
-                    disableAdd={() => isFbEvent}
-                  >
-                    <DateTimeInput
-                      disabled={isFbEvent}
-                      validate={required()}
-                      source="from"
-                    />
-                    <DateTimeInput
-                      disabled={isFbEvent}
-                      source="to"
-                      parse={v => (v ? v : undefined)}
-                    />
-                    <ReferenceArrayInput
-                      label="Artists"
-                      source="artists"
-                      reference="artists"
-                    >
-                      <AutocompleteArrayInput optionText="name" />
-                    </ReferenceArrayInput>
+                  <SimpleFormIterator disableAdd={() => isFbEvent}>
+                    <div style={{ margin: '1em 0', background: '#f7f7f7' }}>
+                      <DateTimeInput
+                        disabled={isFbEvent}
+                        validate={required()}
+                        source="from"
+                      />
+                      <DateTimeInput
+                        disabled={isFbEvent}
+                        source="to"
+                        parse={v => (v ? v : undefined)}
+                      />
+                      <ReferenceArrayInput
+                        label="Artists"
+                        source="artists"
+                        reference="artists"
+                      >
+                        <AutocompleteArrayInput optionText="name" />
+                      </ReferenceArrayInput>
+                    </div>
                   </SimpleFormIterator>
                 </ArrayInput>
               </FormTab>
