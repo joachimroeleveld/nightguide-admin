@@ -13,8 +13,19 @@ const EventDates = ({ source, record = {}, toShow = 3 }) => {
     dates = [dates];
   }
 
+  const momentFrom = moment(dates[0].from);
+  const momentTo = dates[0].to && moment(dates[0].to);
+
   if (dates && dates.length) {
-    const sameDay = moment(dates[0].from).isSame(dates[0].to, 'day');
+    const sameDay =
+      momentTo &&
+      (momentFrom.isSame(momentTo, 'day') ||
+        (momentTo.isSame(moment(dates[0].from).add(1, 'day'), 'day') &&
+          momentTo.isBefore(
+            moment(dates[0].to)
+              .add(1, 'day')
+              .set({ hour: 12, minute: 0 })
+          )));
     const datesToShow = dates.slice(
       0,
       toShow ? (showDates ? dates.length : toShow) : dates.length
@@ -27,7 +38,7 @@ const EventDates = ({ source, record = {}, toShow = 3 }) => {
             {sameDay && (
               <div>
                 <span>{moment(date.from).format('ddd D MMM')}</span>
-                {' | '}
+                {', '}
                 <span>{moment(date.from).format('HH:mm')}</span>
                 {' - '}
                 <span>{moment(date.to).format('HH:mm')}</span>

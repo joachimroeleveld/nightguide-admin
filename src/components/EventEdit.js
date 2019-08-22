@@ -23,7 +23,9 @@ import { connect } from 'react-redux';
 import GoogleImage from './GoogleImage';
 import { __src } from '../services/i18n';
 import TranslatedTextInput from './TranslatedTextInput';
+import FormAccordion from './FormAccordion';
 import { getPageSlugs } from '../state/cities';
+import EventDates from './EventDates';
 
 function EventEdit(props) {
   const { pageSlug, pageSlugs, dispatch, ...otherProps } = props;
@@ -61,8 +63,17 @@ function EventEdit(props) {
                   source="facebook.datesChanged"
                   label="Dates changed"
                 />
-                <ArrayInput validate={required()} source="dates">
-                  <SimpleFormIterator disableAdd={() => isFbEvent}>
+                <ArrayInput
+                  validate={required()}
+                  source="dates"
+                  style={{ width: '100%' }}
+                >
+                  <FormAccordion
+                    renderLabel={record => (
+                      <EventDates record={{ dates: record }} source="dates" />
+                    )}
+                    disableAdd={() => isFbEvent}
+                  >
                     <DateTimeInput
                       disabled={isFbEvent}
                       validate={required()}
@@ -80,10 +91,7 @@ function EventEdit(props) {
                     >
                       <AutocompleteArrayInput optionText="name" />
                     </ReferenceArrayInput>
-                    <div
-                      style={{ border: '5px dashed #ddd', margin: '1em 0' }}
-                    />
-                  </SimpleFormIterator>
+                  </FormAccordion>
                 </ArrayInput>
               </FormTab>
               <FormTab label="Tickets">
