@@ -9,7 +9,7 @@ import {
   FormDataConsumer,
 } from 'react-admin';
 
-import PageSlugFilterUpdater from './PageSlugFilterUpdater';
+import PageSlugFilterUpdater from '../PageSlugFilterUpdater';
 
 const VenueFilter = props => (
   <Filter {...props}>

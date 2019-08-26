@@ -14,9 +14,9 @@ import {
 } from 'react-admin';
 import { connect } from 'react-redux';
 
-import GoogleImage from './GoogleImage';
+import GoogleImage from '../GoogleImage';
 import EventDates from './EventDates';
-import PageSlugFilterUpdater from './PageSlugFilterUpdater';
+import PageSlugFilterUpdater from '../PageSlugFilterUpdater';
 
 const EventFilter = connect(state => ({
   pageSlug: state.cities.pageSlug,

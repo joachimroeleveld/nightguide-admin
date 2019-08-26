@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import {
   EditController,
   EditView,
@@ -11,7 +11,6 @@ import {
   FormTab,
   NumberInput,
   ArrayInput,
-  SimpleFormIterator,
   DateTimeInput,
   required,
   SelectInput,
@@ -20,11 +19,11 @@ import {
 } from 'react-admin';
 import { connect } from 'react-redux';
 
-import GoogleImage from './GoogleImage';
-import { __src } from '../services/i18n';
-import TranslatedTextInput from './TranslatedTextInput';
-import FormAccordion from './FormAccordion';
-import { getPageSlugs } from '../state/cities';
+import GoogleImage from '../GoogleImage';
+import { __src } from '../../services/i18n';
+import TranslatedTextInput from '../TranslatedTextInput';
+import FormAccordion from '../FormAccordion';
+import { getPageSlugs } from '../../state/cities';
 import EventDates from './EventDates';
 
 function EventEdit(props) {

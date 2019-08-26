@@ -1,7 +1,7 @@
 import React from 'react';
 import { List, Datagrid, TextField } from 'react-admin';
 
-import { __src } from '../services/i18n';
+import { __src } from '../../services/i18n';
 
 function TagList(props) {
   return (

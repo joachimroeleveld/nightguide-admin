@@ -1,7 +1,7 @@
 import React from 'react';
 import { Create, SimpleForm, TextInput } from 'react-admin';
 
-import TranslatedTextInput from './TranslatedTextInput';
+import TranslatedTextInput from '../TranslatedTextInput';
 
 function TagCreate(props) {
   return (

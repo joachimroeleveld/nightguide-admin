@@ -14,17 +14,18 @@ import {
   FormTab,
   NumberInput,
   ArrayInput,
-  SimpleFormIterator,
   DateTimeInput,
   SelectInput,
   AutocompleteArrayInput,
   regex,
 } from 'react-admin';
 
-import GoogleImage from './GoogleImage';
-import { __src } from '../services/i18n';
-import TranslatedTextInput from './TranslatedTextInput';
-import { getPageSlugs } from '../state/cities';
+import GoogleImage from '../GoogleImage';
+import { __src } from '../../services/i18n';
+import TranslatedTextInput from '../TranslatedTextInput';
+import { getPageSlugs } from '../../state/cities';
+import FormAccordion from '../FormAccordion';
+import EventDates from './EventDates';
 
 function EventCreate(props) {
   const { pageSlug, pageSlugs, dispatch, ...otherProps } = props;
@@ -50,7 +51,11 @@ function EventCreate(props) {
         </FormTab>
         <FormTab label="Dates">
           <ArrayInput validate={required()} source="dates">
-            <SimpleFormIterator>
+            <FormAccordion
+              renderLabel={record => (
+                <EventDates record={{ dates: record }} source="dates" />
+              )}
+            >
               <DateTimeInput validate={required()} source="from" />
               <DateTimeInput source="to" parse={v => (v ? v : undefined)} />
               <ReferenceArrayInput
@@ -60,7 +65,7 @@ function EventCreate(props) {
               >
                 <AutocompleteArrayInput optionText="name" />
               </ReferenceArrayInput>
-            </SimpleFormIterator>
+            </FormAccordion>
           </ArrayInput>
         </FormTab>
         <FormTab label="Location">

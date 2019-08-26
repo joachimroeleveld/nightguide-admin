@@ -10,16 +10,17 @@ import {
   Datagrid,
 } from 'react-admin';
 
-import { __src } from '../services/i18n';
-import EventDates from '../components/EventDates';
-import GoogleImage from '../components/GoogleImage';
+import { __src } from '../../services/i18n';
+import EventDates from '../events/EventDates';
+import GoogleImage from '../GoogleImage';
+import TranslatedTextField from '../TranslatedTextField';
 
 function VenueEdit(props) {
   return (
     <Show {...props}>
       <SimpleShowLayout>
         <TextField source="name" />
-        <TextField source={__src('description')} />
+        <TranslatedTextField rich={true} source={'description'} />
         <ReferenceArrayField label="Tags" reference="tags" source="tags">
           <SingleFieldList>
             <ChipField source={__src('name')} />

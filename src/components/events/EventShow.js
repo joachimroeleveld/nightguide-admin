@@ -16,10 +16,11 @@ import {
   BooleanField,
 } from 'react-admin';
 
-import GoogleImage from './GoogleImage';
-import FbEventUrl from './FbEventUrl';
+import GoogleImage from '../GoogleImage';
+import FbEventUrl from '../FbEventUrl';
 import EventDates from './EventDates';
-import { __src } from '../services/i18n';
+import { __src } from '../../services/i18n';
+import TranslatedTextField from '../TranslatedTextField';
 
 function EventEdit(props) {
   return (
@@ -38,7 +39,7 @@ function EventEdit(props) {
                 <TextField source="name" />
               </ReferenceField>
               <TextField source="title" />
-              <TextField source={__src('description')} />
+              <TranslatedTextField source={'description'} rich={true} />
               <EventDates source="dates" />
               <ReferenceArrayField label="Tags" reference="tags" source="tags">
                 <SingleFieldList>

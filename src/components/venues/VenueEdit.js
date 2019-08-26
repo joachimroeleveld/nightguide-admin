@@ -9,8 +9,8 @@ import {
   BooleanInput,
 } from 'react-admin';
 
-import { __src } from '../services/i18n';
-import TranslatedTextInput from './TranslatedTextInput';
+import { __src } from '../../services/i18n';
+import TranslatedTextInput from '../TranslatedTextInput';
 
 function VenueEdit(props) {
   return (

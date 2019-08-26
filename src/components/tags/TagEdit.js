@@ -1,6 +1,6 @@
 import React from 'react';
 import { Edit, SimpleForm, TextField, TextInput } from 'react-admin';
-import TranslatedTextInput from './TranslatedTextInput';
+import TranslatedTextInput from '../TranslatedTextInput';
 
 function TagEdit(props) {
   return (

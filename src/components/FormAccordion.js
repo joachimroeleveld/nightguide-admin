@@ -70,10 +70,6 @@ const styles = theme =>
   });
 
 export class SimpleFormIterator extends Component {
-  state = {
-    expanded: false,
-  };
-
   constructor(props) {
     super(props);
     // we need a unique id for each field for a proper enter/exit animation
@@ -91,13 +87,12 @@ export class SimpleFormIterator extends Component {
     // on the CssTransition element inside our render method
     this.ids = this.nextId > 0 ? Array.from(Array(this.nextId).keys()) : [];
 
+    this.state = {
+      expanded: this.ids.length === 1 ? this.ids[0] : false,
+    };
+
     const { record, source, renderLabel } = this.props;
     const records = get(record, source);
-    this.labels = records
-      ? records.map(
-          (record, index) => (renderLabel && renderLabel(record)) || index
-        )
-      : [];
   }
 
   handleChange = panel => (event, isExpanded) => {
@@ -109,7 +104,6 @@ export class SimpleFormIterator extends Component {
   removeField = index => () => {
     const { fields } = this.props;
     this.ids.splice(index, 1);
-    this.labels.splice(index, 1);
     fields.remove(index);
   };
 
@@ -127,7 +121,6 @@ export class SimpleFormIterator extends Component {
   addField = () => {
     const { fields } = this.props;
     this.ids.push(this.nextId++);
-    this.labels.push('NEW');
     fields.push({});
   };
 
@@ -144,6 +137,7 @@ export class SimpleFormIterator extends Component {
       translate,
       disableAdd,
       disableRemove,
+      LabelComponent = () => 'NEW',
     } = this.props;
     const records = get(record, source);
     return fields ? (
@@ -164,7 +158,9 @@ export class SimpleFormIterator extends Component {
               >
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                   <Typography variant="body1" className={classes.index}>
-                    {this.labels[index]}
+                    <LabelComponent
+                      record={(records && records[index]) || {}}
+                    />
                   </Typography>
                 </ExpansionPanelSummary>
                 {this.state.expanded === this.ids[index] && (
