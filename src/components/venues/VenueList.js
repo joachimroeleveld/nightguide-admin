@@ -24,11 +24,8 @@ const VenueFilter = props => (
 
 function VenueList(props) {
   return (
-    <List
-      {...props}
-      filters={<VenueFilter />}
-    >
-      <Datagrid rowClick="show">
+    <List {...props} filters={<VenueFilter />}>
+      <Datagrid rowClick="edit">
         <TextField source="name" />
       </Datagrid>
     </List>

@@ -7,6 +7,7 @@ import authProvider from './services/api/auth';
 import VenueList from './components/venues/VenueList';
 import VenueEdit from './components/venues/VenueEdit';
 import VenueShow from './components/venues/VenueShow';
+import VenueCreate from './components/venues/VenueCreate';
 import TagList from './components/tags/TagList';
 import TagEdit from './components/tags/TagEdit';
 import TagCreate from './components/tags/TagCreate';
@@ -46,6 +47,7 @@ function App() {
       <Resource
         name="venues"
         list={VenueList}
+        create={VenueCreate}
         edit={VenueEdit}
         show={VenueShow}
       />

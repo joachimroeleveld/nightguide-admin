@@ -1,7 +1,6 @@
 import React from 'react';
 import {
-  Edit,
-  TextField,
+  Create,
   TabbedForm,
   FormTab,
   TextInput,
@@ -14,17 +13,16 @@ import {
 import { connect } from 'react-redux';
 
 import TranslatedTextInput from '../TranslatedTextInput';
-import { getPageSlugs } from '../../state/cities';
 import GoogleImage from '../GoogleImage';
+import { getPageSlugs } from '../../state/cities';
 
-function VenueEdit(props) {
+function VenueCreate(props) {
   const { pageSlug, pageSlugs, dispatch, ...otherProps } = props;
 
   return (
-    <Edit undoable={false} {...props}>
+    <Create undoable={false} {...props}>
       <TabbedForm redirect="list">
         <FormTab label="General">
-          <TextField source="id" />
           <SelectInput
             validate={required()}
             source="pageSlug"
@@ -68,11 +66,11 @@ function VenueEdit(props) {
           </ImageInput>
         </FormTab>
       </TabbedForm>
-    </Edit>
+    </Create>
   );
 }
 
 export default connect(state => ({
   pageSlug: state.cities.pageSlug,
   pageSlugs: getPageSlugs(state),
-}))(VenueEdit);
+}))(VenueCreate);

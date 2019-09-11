@@ -3,14 +3,10 @@ import {
   Show,
   SimpleShowLayout,
   TextField,
-  ReferenceArrayField,
-  ChipField,
-  SingleFieldList,
   ReferenceManyField,
   Datagrid,
 } from 'react-admin';
 
-import { __src } from '../../services/i18n';
 import EventDates from '../events/EventDates';
 import GoogleImage from '../GoogleImage';
 import TranslatedTextField from '../TranslatedTextField';
@@ -21,11 +17,6 @@ function VenueEdit(props) {
       <SimpleShowLayout>
         <TextField source="name" />
         <TranslatedTextField rich={true} source={'description'} />
-        <ReferenceArrayField label="Tags" reference="tags" source="tags">
-          <SingleFieldList>
-            <ChipField source={__src('name')} />
-          </SingleFieldList>
-        </ReferenceArrayField>
         <ReferenceManyField label="Events" reference="events" target="venue">
           <Datagrid rowClick="show">
             <GoogleImage source="images[0].url" size="48" label="" />
