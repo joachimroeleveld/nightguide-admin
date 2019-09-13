@@ -8,6 +8,7 @@ import {
   SelectInput,
   ImageInput,
   required,
+  NumberInput,
   regex,
 } from 'react-admin';
 import { connect } from 'react-redux';
@@ -46,12 +47,25 @@ function VenueCreate(props) {
           <TextInput source="location.postalCode" validate={required()} />
           <TextInput source="location.city" validate={required()} />
           <TextInput
-            source="location.coordinates.longitude"
-            validate={regex(/^(-?\d+(\.\d+)?)\.\s*(-?\d+(\.\d+)?)$/)}
+            source="location.country"
+            label={'Country code'}
+            validate={[required()]}
           />
-          <TextInput
+          <NumberInput
+            source="location.coordinates.longitude"
+            validate={[
+              required(),
+              regex(/^(-?\d+(\.\d+)?),\s*(-?\d+(\.\d+)?)$/),
+            ]}
+            parse={input => parseFloat(input)}
+          />
+          <NumberInput
             source="location.coordinates.latitude"
-            validate={regex(/^(-?\d+(\.\d+)?)\.\s*(-?\d+(\.\d+)?)$/)}
+            validate={[
+              required(),
+              regex(/^(-?\d+(\.\d+)?),\s*(-?\d+(\.\d+)?)$/),
+            ]}
+            parse={input => parseFloat(input)}
           />
           <TextInput source="location.googlePlaceId" />
         </FormTab>
