@@ -14,6 +14,9 @@ import TagCreate from './components/tags/TagCreate';
 import ArtistList from './components/artists/ArtistList';
 import ArtistEdit from './components/artists/ArtistEdit';
 import ArtistCreate from './components/artists/ArtistCreate';
+import ConfigList from './components/configs/ConfigList';
+import ConfigEdit from './components/configs/ConfigEdit';
+import ConfigCreate from './components/configs/ConfigCreate';
 import EventList from './components/events/EventList';
 import EventShow from './components/events/EventShow';
 import EventCreate from './components/events/EventCreate';
@@ -57,6 +60,12 @@ function App() {
         list={ArtistList}
         edit={ArtistEdit}
         create={ArtistCreate}
+      />
+      <Resource
+        name="configs"
+        list={ConfigList}
+        edit={ConfigEdit}
+        create={ConfigCreate}
       />
       <Resource
         name="venues-articles"

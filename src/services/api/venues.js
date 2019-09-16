@@ -17,7 +17,7 @@ export default async (type, params) => {
     }
     case CREATE: {
       const { data } = params;
-      const { images, ...body } = data;
+      const { images = [], ...body } = data;
       const res = await request(`/venues`, { method: 'POST', body });
       const imageData = images.map(img => img.rawFile).filter(img => !!img);
       await updateImages(res.data.id, imageData);

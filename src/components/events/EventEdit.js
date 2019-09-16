@@ -74,13 +74,13 @@ function EventEdit(props) {
                     disableAdd={() => isFbEvent}
                   >
                     <DateTimeInput
+                      source="from"
                       disabled={isFbEvent}
                       validate={required()}
-                      source="from"
                     />
                     <DateTimeInput
-                      disabled={isFbEvent}
                       source="to"
+                      disabled={isFbEvent}
                       parse={v => (v ? v : undefined)}
                     />
                     <ReferenceArrayInput

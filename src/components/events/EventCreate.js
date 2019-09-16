@@ -56,8 +56,15 @@ function EventCreate(props) {
                 <EventDates record={{ dates: record }} source="dates" />
               )}
             >
-              <DateTimeInput validate={required()} source="from" />
-              <DateTimeInput source="to" parse={v => (v ? v : undefined)} />
+              <DateTimeInput
+                parse={v => v ? new Date(v).toISOString() : undefined}
+                validate={required()}
+                source="from"
+              />
+              <DateTimeInput
+                parse={v => (v ? new Date(v).toISOString() : undefined)}
+                source="to"
+              />
               <ReferenceArrayInput
                 label="Artists"
                 source="artists"
