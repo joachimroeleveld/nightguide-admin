@@ -47,6 +47,13 @@ function EventCreate(props) {
           <ReferenceArrayInput label="Tags" reference="tags" source="tags">
             <SelectArrayInput optionText={__src('name')} />
           </ReferenceArrayInput>
+          <ReferenceArrayInput
+            label="Artists (all dates)"
+            source="artists"
+            reference="artists"
+          >
+            <AutocompleteArrayInput optionText="name" />
+          </ReferenceArrayInput>
           <BooleanInput source="admin.hide" label="Hide" />
         </FormTab>
         <FormTab label="Dates">
@@ -57,7 +64,7 @@ function EventCreate(props) {
               )}
             >
               <DateTimeInput
-                parse={v => v ? new Date(v).toISOString() : undefined}
+                parse={v => (v ? new Date(v).toISOString() : undefined)}
                 validate={required()}
                 source="from"
               />
@@ -72,6 +79,16 @@ function EventCreate(props) {
               >
                 <AutocompleteArrayInput optionText="name" />
               </ReferenceArrayInput>
+              <TextInput
+                label="Ticket page URL"
+                source="ticketsUrl"
+                type="url"
+                validate={regex(/^https?:\/\/.+\..+/, 'Not a valid URL')}
+              />
+              <NumberInput
+                source={'interestedCount'}
+                label={'Interested count'}
+              />
             </FormAccordion>
           </ArrayInput>
         </FormTab>

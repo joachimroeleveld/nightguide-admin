@@ -55,6 +55,13 @@ function EventEdit(props) {
                 >
                   <SelectArrayInput optionText={__src('name')} />
                 </ReferenceArrayInput>
+                <ReferenceArrayInput
+                  label="Artists (all dates)"
+                  source="artists"
+                  reference="artists"
+                >
+                  <AutocompleteArrayInput optionText="name" />
+                </ReferenceArrayInput>
                 <BooleanInput source="admin.hide" label="Hide" />
               </FormTab>
               <FormTab label="Dates">
@@ -90,6 +97,16 @@ function EventEdit(props) {
                     >
                       <AutocompleteArrayInput optionText="name" />
                     </ReferenceArrayInput>
+                    <TextInput
+                      label="Ticket page URL"
+                      source="ticketsUrl"
+                      type="url"
+                      validate={regex(/^https?:\/\/.+\..+/, 'Not a valid URL')}
+                    />
+                    <NumberInput
+                      source={'interestedCount'}
+                      label={'Interested count'}
+                    />
                   </FormAccordion>
                 </ArrayInput>
               </FormTab>

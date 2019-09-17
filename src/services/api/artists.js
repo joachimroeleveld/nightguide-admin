@@ -38,7 +38,7 @@ export default (type, params) => {
 
 function getList(opts) {
   const { pagination, ids } = opts;
-  const { q, ...filter } = opts.filter;
+  const { q, ...filter } = opts.filter || {};
   return request('/artists', {
     pagination,
     query: {
