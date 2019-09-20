@@ -135,8 +135,8 @@ export class SimpleFormIterator extends Component {
       resource,
       source,
       translate,
-      disableAdd,
-      disableRemove,
+      disableAdd = false,
+      disableRemove = false,
       LabelComponent = () => 'NEW',
     } = this.props;
     const records = get(record, source);
@@ -230,12 +230,6 @@ const SimpleFormIteratorField = compose(
   translate,
   withStyles(styles)
 )(SimpleFormIterator);
-
-SimpleFormIteratorField.defaultProps = {
-  fullWidth: true,
-  disableAdd: false,
-  disableRemove: false,
-};
 
 SimpleFormIteratorField.propTypes = {
   defaultValue: PropTypes.any,

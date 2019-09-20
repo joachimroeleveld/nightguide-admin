@@ -111,12 +111,17 @@ function EventEdit(props) {
                     <NumberInput
                       source={'interestedCount'}
                       label={'Interested count'}
+                      parse={v => (v !== null ? v : undefined)}
                     />
                   </FormAccordion>
                 </ArrayInput>
               </FormTab>
               <FormTab label="Tickets">
-                <SelectInput optionText="name" choices={ticketProviders} />
+                <SelectInput
+                  source={'tickets.provider'}
+                  label={'Provider'}
+                  choices={ticketProviders}
+                />
                 <TextInput
                   label="Ticket redirect URL"
                   source="tickets.checkoutUrl"
