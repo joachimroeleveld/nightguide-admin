@@ -26,6 +26,7 @@ import TranslatedTextInput from '../TranslatedTextInput';
 import FormAccordion from '../FormAccordion';
 import { getPageSlugs } from '../../state/cities';
 import EventDates from './EventDates';
+import EventTicketProviderFields from './EventTicketProviderFields';
 
 function EventEdit(props) {
   const { pageSlug, pageSlugs, dispatch, ...otherProps } = props;
@@ -117,17 +118,13 @@ function EventEdit(props) {
                 </ArrayInput>
               </FormTab>
               <FormTab label="Tickets">
-                <SelectInput
-                  source={'tickets.provider'}
-                  label={'Provider'}
-                  choices={ticketProviders}
-                />
                 <TextInput
                   label="Ticket redirect URL"
                   source="tickets.checkoutUrl"
                   type="url"
                   validate={regex(/^https?:\/\/.+\..+/, 'Not a valid URL')}
                 />
+                <EventTicketProviderFields />
               </FormTab>
               <FormTab label="Media">
                 <ImageInput
