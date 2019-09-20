@@ -127,7 +127,6 @@ function EventCreate(props) {
             type="url"
             validate={regex(/^https?:\/\/.+\..+/, 'Not a valid URL')}
           />
-          <NumberInput label="From price" source="tickets.priceFrom" />
         </FormTab>
         <FormTab label="Media">
           <ImageInput

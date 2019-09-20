@@ -34,7 +34,7 @@ function EventEdit(props) {
     <EditController undoable={false} {...otherProps}>
       {controllerProps => {
         const { record } = controllerProps;
-        const isFbEvent = record && record.facebook;
+        const isFbEvent = record && record.facebook && record.facebook.id;
         return (
           <EditView {...otherProps} {...controllerProps}>
             <TabbedForm>
@@ -128,7 +128,6 @@ function EventEdit(props) {
                   type="url"
                   validate={regex(/^https?:\/\/.+\..+/, 'Not a valid URL')}
                 />
-                <NumberInput label="From price" source="tickets.priceFrom" />
               </FormTab>
               <FormTab label="Media">
                 <ImageInput
