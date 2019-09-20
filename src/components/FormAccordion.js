@@ -226,12 +226,18 @@ export class SimpleFormIterator extends Component {
   }
 }
 
-SimpleFormIterator.defaultProps = {
+const SimpleFormIteratorField = compose(
+  translate,
+  withStyles(styles)
+)(SimpleFormIterator);
+
+SimpleFormIteratorField.defaultProps = {
+  fullWidth: true,
   disableAdd: false,
   disableRemove: false,
 };
 
-SimpleFormIterator.propTypes = {
+SimpleFormIteratorField.propTypes = {
   defaultValue: PropTypes.any,
   basePath: PropTypes.string,
   children: PropTypes.node,
@@ -248,7 +254,4 @@ SimpleFormIterator.propTypes = {
   renderLabel: PropTypes.func,
 };
 
-export default compose(
-  translate,
-  withStyles(styles)
-)(SimpleFormIterator);
+export default SimpleFormIteratorField;

@@ -19,6 +19,7 @@ import {
 } from 'react-admin';
 import { connect } from 'react-redux';
 
+import ticketProviders from './ticket-providers';
 import GoogleImage from '../GoogleImage';
 import { __src } from '../../services/i18n';
 import TranslatedTextInput from '../TranslatedTextInput';
@@ -98,10 +99,14 @@ function EventEdit(props) {
                       <AutocompleteArrayInput optionText="name" />
                     </ReferenceArrayInput>
                     <TextInput
-                      label="Ticket page URL"
+                      label="Ticket redirect URL"
                       source="ticketsUrl"
                       type="url"
                       validate={regex(/^https?:\/\/.+\..+/, 'Not a valid URL')}
+                    />
+                    <TextInput
+                      label="Provider event ID"
+                      source="providerEventId"
                     />
                     <NumberInput
                       source={'interestedCount'}
@@ -111,8 +116,9 @@ function EventEdit(props) {
                 </ArrayInput>
               </FormTab>
               <FormTab label="Tickets">
+                <SelectInput optionText="name" choices={ticketProviders} />
                 <TextInput
-                  label="Ticket page URL"
+                  label="Ticket redirect URL"
                   source="tickets.checkoutUrl"
                   type="url"
                   validate={regex(/^https?:\/\/.+\..+/, 'Not a valid URL')}

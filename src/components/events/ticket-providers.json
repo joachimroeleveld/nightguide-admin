@@ -1,0 +1,22 @@
+[
+  {
+    "id": "eventbrite",
+    "name": "Eventbrite"
+  },
+  {
+    "id": "eventix",
+    "name": "Eventix"
+  },
+  {
+    "id": "yourticketprovider",
+    "name": "Yourticketprovider"
+  },
+  {
+    "id": "tibbaa",
+    "name": "Tibbaa"
+  },
+  {
+    "id": "ticketmaster",
+    "name": "Ticketmaster"
+  }
+]

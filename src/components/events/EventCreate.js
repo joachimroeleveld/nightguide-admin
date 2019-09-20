@@ -26,6 +26,7 @@ import TranslatedTextInput from '../TranslatedTextInput';
 import { getPageSlugs } from '../../state/cities';
 import FormAccordion from '../FormAccordion';
 import EventDates from './EventDates';
+import ticketProviders from './ticket-providers';
 
 function EventCreate(props) {
   const { pageSlug, pageSlugs, dispatch, ...otherProps } = props;
@@ -57,7 +58,11 @@ function EventCreate(props) {
           <BooleanInput source="admin.hide" label="Hide" />
         </FormTab>
         <FormTab label="Dates">
-          <ArrayInput validate={required()} source="dates">
+          <ArrayInput
+            validate={required()}
+            source="dates"
+            style={{ width: '100%' }}
+          >
             <FormAccordion
               renderLabel={record => (
                 <EventDates record={{ dates: record }} source="dates" />
@@ -80,11 +85,12 @@ function EventCreate(props) {
                 <AutocompleteArrayInput optionText="name" />
               </ReferenceArrayInput>
               <TextInput
-                label="Ticket page URL"
+                label="Ticket redirect URL"
                 source="ticketsUrl"
                 type="url"
                 validate={regex(/^https?:\/\/.+\..+/, 'Not a valid URL')}
               />
+              <TextInput label="Provider event ID" source="providerEventId" />
               <NumberInput
                 source={'interestedCount'}
                 label={'Interested count'}
@@ -109,8 +115,13 @@ function EventCreate(props) {
           </ReferenceInput>
         </FormTab>
         <FormTab label="Tickets">
+          <SelectInput
+            source="tickets.provider"
+            label="Ticket provider"
+            choices={ticketProviders}
+          />
           <TextInput
-            label="Ticket page URL"
+            label="Ticket redirect URL"
             source="tickets.checkoutUrl"
             type="url"
             validate={regex(/^https?:\/\/.+\..+/, 'Not a valid URL')}
