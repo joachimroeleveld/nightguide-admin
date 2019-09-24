@@ -30,6 +30,25 @@ function EventTicketProviderFields(props) {
                     />
                   </Fragment>
                 );
+              case 'eventbrite':
+                return (
+                  <Fragment>
+                    <div>
+                      <TextInput
+                        label="Affiliate partner ID"
+                        source="tickets.providerData.partnerId"
+                        {...props}
+                      />
+                    </div>
+                    <div>
+                      <TextInput
+                        label="Affiliate program name"
+                        source="tickets.providerData.programName"
+                        {...props}
+                      />
+                    </div>
+                  </Fragment>
+                );
               default:
                 return null;
             }

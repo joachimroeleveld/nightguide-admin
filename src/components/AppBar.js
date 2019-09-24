@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React, { useEffect } from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -28,8 +27,8 @@ const CitySwitcher = withStyles(styles)(props => {
 
   useEffect(() => {
     async function fetchConfig() {
-      const res = await apiRequest('/misc/city-config');
-      setCityConfig(res.data);
+      const res = await apiRequest('/configs/name/cities');
+      setCityConfig(res.data.payload);
     }
     fetchConfig();
   }, []);

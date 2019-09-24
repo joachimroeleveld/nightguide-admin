@@ -112,7 +112,6 @@ function EventEdit(props) {
                     <NumberInput
                       source={'interestedCount'}
                       label={'Interested count'}
-                      parse={v => (v !== null ? v : undefined)}
                     />
                   </FormAccordion>
                 </ArrayInput>

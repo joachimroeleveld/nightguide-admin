@@ -81,6 +81,9 @@ function VenueEdit(props) {
             <GoogleImage source="url" size={230} />
           </ImageInput>
         </FormTab>
+        <FormTab label="Social">
+          <TextInput source="facebook.id" label="Facebook ID" />
+        </FormTab>
       </TabbedForm>
     </Edit>
   );
