@@ -25,6 +25,9 @@ import VenuesArticleEdit from './components/venuesarticles/VenuesArticleEdit';
 import VenuesArticleCreate from './components/venuesarticles/VenuesArticleCreate';
 import VenuesArticleList from './components/venuesarticles/VenuesArticleList';
 import AppLayout from './components/AppLayout';
+import PageList from './components/pages/PageList';
+import PageEdit from './components/pages/PageEdit';
+import PageCreate from './components/pages/PageCreate';
 
 import citiesReducer from './state/cities';
 
@@ -66,6 +69,12 @@ function App() {
         list={ConfigList}
         edit={ConfigEdit}
         create={ConfigCreate}
+      />
+      <Resource
+        name="pages"
+        list={PageList}
+        edit={PageEdit}
+        create={PageCreate}
       />
       <Resource
         name="venues-articles"

@@ -12,6 +12,7 @@ const resources = {
   artists,
   configs,
   'venues-articles': content,
+  pages: content,
 };
 
 export default (type, resource, params) => {
