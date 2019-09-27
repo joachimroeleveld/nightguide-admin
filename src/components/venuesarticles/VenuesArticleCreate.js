@@ -8,12 +8,14 @@ import {
   ReferenceInput,
   AutocompleteInput,
   SelectInput,
+  ImageInput,
 } from 'react-admin';
 import { connect } from 'react-redux';
 
 import TranslatedTextInput from '../TranslatedTextInput';
 import FormAccordion from '../FormAccordion';
 import { getPageSlugs } from '../../state/cities';
+import GoogleImage from '../GoogleImage';
 
 function VenuesArticleCreate(props) {
   const { pageSlug, pageSlugs, ...otherProps } = props;
@@ -71,6 +73,16 @@ function VenuesArticleCreate(props) {
               />
             </FormAccordion>
           </ArrayInput>
+        </FormTab>
+        <FormTab label="Media">
+          <ImageInput
+            source="coverImage"
+            accept="image/*"
+            maxSize={5000000} // 5MB
+            label="Cover image"
+          >
+            <GoogleImage source="url" size={230} />
+          </ImageInput>
         </FormTab>
       </TabbedForm>
     </Create>

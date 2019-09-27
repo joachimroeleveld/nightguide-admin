@@ -11,8 +11,8 @@ const resources = {
   events,
   artists,
   configs,
-  'venues-articles': content,
-  pages: content,
+  'venues-articles': content('venues-article'),
+  pages: content('page'),
 };
 
 export default (type, resource, params) => {
