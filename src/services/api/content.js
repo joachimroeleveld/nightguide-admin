@@ -23,7 +23,7 @@ export default contentType => async (type, params) => {
         method: 'POST',
         body: {
           ...body,
-          type,
+          type: contentType,
         },
       });
       await updateImages('content', res.data.id, 'images', params);
