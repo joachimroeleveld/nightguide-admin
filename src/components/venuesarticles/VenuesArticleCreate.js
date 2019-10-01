@@ -76,10 +76,10 @@ function VenuesArticleCreate(props) {
         </FormTab>
         <FormTab label="Media">
           <ImageInput
-            source="coverImage"
+            source="images"
             accept="image/*"
             maxSize={5000000} // 5MB
-            label="Cover image"
+            multiple
           >
             <GoogleImage source="url" size={230} />
           </ImageInput>

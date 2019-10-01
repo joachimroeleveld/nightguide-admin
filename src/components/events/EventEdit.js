@@ -19,7 +19,6 @@ import {
 } from 'react-admin';
 import { connect } from 'react-redux';
 
-import ticketProviders from './ticket-providers';
 import GoogleImage from '../GoogleImage';
 import { __src } from '../../services/i18n';
 import TranslatedTextInput from '../TranslatedTextInput';

@@ -12,12 +12,15 @@ import {
   ReferenceField,
   TextField,
   SimpleShowLayout,
+  ImageInput,
 } from 'react-admin';
 import { connect } from 'react-redux';
 
 import TranslatedTextInput from '../TranslatedTextInput';
 import { getPageSlugs } from '../../state/cities';
 import FormAccordion from '../FormAccordion';
+import GoogleImage from '../GoogleImage';
+import ImageSelector from '../ImageSelector';
 
 const VenueLabel = connect()(props =>
   props.record.venueId ? (
@@ -99,6 +102,17 @@ function VenuesArticleEdit(props) {
               />
             </FormAccordion>
           </ArrayInput>
+        </FormTab>
+        <FormTab label="Media">
+          <ImageSelector source="thumbnail" imagesSource="images" />
+          <ImageInput
+            source="images"
+            accept="image/*"
+            maxSize={5000000} // 5MB
+            multiple
+          >
+            <GoogleImage captionSource="id" source="url" size={230} />
+          </ImageInput>
         </FormTab>
       </TabbedForm>
     </Edit>

@@ -8,21 +8,26 @@ import {
 } from 'react-admin';
 
 import request from './request';
+import { updateImages } from './util';
 
-export default contentType => (type, params) => {
+export default contentType => async (type, params) => {
   switch (type) {
     case GET_LIST: {
       return getList(contentType, params);
     }
     case CREATE: {
       const { data } = params;
-      return request(`/content`, {
+      const { images, ...body } = data;
+
+      const res = await request(`/content`, {
         method: 'POST',
         body: {
-          ...data,
+          ...body,
           type,
         },
       });
+      await updateImages('content', res.data.id, 'images', params);
+      return res;
     }
     case GET_ONE: {
       const { id } = params;
@@ -30,10 +35,10 @@ export default contentType => (type, params) => {
     }
     case UPDATE: {
       const { id, data } = params;
-      return request(`/content/${id}`, {
-        body: data,
-        method: 'PUT',
-      });
+      const { images, ...body } = data;
+
+      await updateImages('content', id, 'images', params);
+      return request(`/content/${id}`, { body, method: 'PUT' });
     }
     case DELETE: {
       const { id } = params;
@@ -53,6 +58,7 @@ function getList(contentType, opts) {
       ids,
       type: contentType,
       ...filter,
+      populate: ['images'],
     },
   });
 }
