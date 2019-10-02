@@ -104,7 +104,7 @@ function VenuesArticleEdit(props) {
           </ArrayInput>
         </FormTab>
         <FormTab label="Media">
-          <ImageSelector source="thumbnail" imagesSource="images" />
+          <ImageSelector source="coverImage" imagesSource="images" />
           <ImageInput
             source="images"
             accept="image/*"
