@@ -28,6 +28,9 @@ import AppLayout from './components/AppLayout';
 import PageList from './components/pages/PageList';
 import PageEdit from './components/pages/PageEdit';
 import PageCreate from './components/pages/PageCreate';
+import BlogList from './components/blogs/BlogList';
+import BlogEdit from './components/blogs/BlogEdit';
+import BlogCreate from './components/blogs/BlogCreate';
 
 import citiesReducer from './state/cities';
 
@@ -75,6 +78,12 @@ function App() {
         list={PageList}
         edit={PageEdit}
         create={PageCreate}
+      />
+      <Resource
+        name="blogs"
+        list={BlogList}
+        edit={BlogEdit}
+        create={BlogCreate}
       />
       <Resource
         name="venues-articles"

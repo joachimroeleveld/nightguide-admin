@@ -12,6 +12,7 @@ const resources = {
   artists,
   configs,
   'venues-articles': content('venues-article'),
+  blogs: content('blog'),
   pages: content('page'),
 };
 

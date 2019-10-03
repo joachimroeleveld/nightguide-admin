@@ -14,6 +14,7 @@ class MarkdownInput extends Component {
   static propTypes = {
     input: PropTypes.object,
     source: PropTypes.string,
+    inputProps: PropTypes.object,
   };
 
   constructor(props) {
@@ -59,6 +60,7 @@ class MarkdownInput extends Component {
             Promise.resolve(this.converter.makeHtml(markdown))
           }
           selectedTab={this.state.tab}
+          {...this.props.inputProps}
         />
       </FormControl>
     );
@@ -70,5 +72,6 @@ const MarkDownInputWithField = addField(withStyles(styles)(MarkdownInput));
 MarkDownInputWithField.defaultProps = {
   addLabel: true,
   fullWidth: true,
+  inputProps: {},
 };
 export default MarkDownInputWithField;
