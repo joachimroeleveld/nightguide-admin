@@ -60,25 +60,6 @@ function App() {
         edit={VenueEdit}
         show={VenueShow}
       />
-      <Resource name="tags" list={TagList} edit={TagEdit} create={TagCreate} />
-      <Resource
-        name="artists"
-        list={ArtistList}
-        edit={ArtistEdit}
-        create={ArtistCreate}
-      />
-      <Resource
-        name="configs"
-        list={ConfigList}
-        edit={ConfigEdit}
-        create={ConfigCreate}
-      />
-      <Resource
-        name="pages"
-        list={PageList}
-        edit={PageEdit}
-        create={PageCreate}
-      />
       <Resource
         name="blogs"
         list={BlogList}
@@ -90,6 +71,25 @@ function App() {
         list={VenuesArticleList}
         edit={VenuesArticleEdit}
         create={VenuesArticleCreate}
+      />
+      <Resource name="tags" list={TagList} edit={TagEdit} create={TagCreate} />
+      <Resource
+        name="artists"
+        list={ArtistList}
+        edit={ArtistEdit}
+        create={ArtistCreate}
+      />
+      <Resource
+        name="pages"
+        list={PageList}
+        edit={PageEdit}
+        create={PageCreate}
+      />
+      <Resource
+        name="configs"
+        list={ConfigList}
+        edit={ConfigEdit}
+        create={ConfigCreate}
       />
     </Admin>
   );

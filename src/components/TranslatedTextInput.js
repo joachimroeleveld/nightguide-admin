@@ -12,6 +12,7 @@ const TranslatedTextInput = props => {
 
 TranslatedTextInput.defaultProps = {
   addLabel: true,
+  fullWidth: true,
 };
 
 export default TranslatedTextInput;

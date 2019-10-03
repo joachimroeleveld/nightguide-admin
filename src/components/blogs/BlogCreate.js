@@ -1,5 +1,12 @@
 import React from 'react';
-import { Create, SelectInput, TabbedForm, FormTab, ImageInput, required } from 'react-admin';
+import {
+  Create,
+  SelectInput,
+  TabbedForm,
+  FormTab,
+  ImageInput,
+  required,
+} from 'react-admin';
 import { connect } from 'react-redux';
 
 import TranslatedTextInput from '../TranslatedTextInput';
@@ -26,7 +33,7 @@ function BlogCreate(props) {
             source="intro"
             label="Intro text"
             rich={true}
-            inputProps={{ minEditorHeight: 60 }}
+            inputProps={{ minEditorHeight: 60, commands: [] }}
           />
           <TranslatedTextInput
             rich={true}

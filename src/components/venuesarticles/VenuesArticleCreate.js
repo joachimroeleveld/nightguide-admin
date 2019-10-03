@@ -42,6 +42,7 @@ function VenuesArticleCreate(props) {
             source="intro"
             label="Intro text"
             rich={true}
+            inputProps={{ minEditorHeight: 60, commands: [] }}
           />
         </FormTab>
         <FormTab label="Venues">

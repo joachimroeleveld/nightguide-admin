@@ -33,10 +33,10 @@ function BlogEdit(props) {
           <TranslatedTextInput source="title" validate={required()} />
           <TextInput source="urlSlugs.0" label="URL slug" />
           <TranslatedTextInput
-            inputProps={{ minEditorHeight: 60 }}
             source="intro"
             label="Intro text"
             rich={true}
+            inputProps={{ minEditorHeight: 60, commands: [] }}
           />
           <TranslatedTextInput
             rich={true}
@@ -52,7 +52,7 @@ function BlogEdit(props) {
             maxSize={5000000} // 5MB
             multiple
           >
-            <GoogleImage source="url" size={230} />
+            <GoogleImage captionSource="id" source="url" size={230} />
           </ImageInput>
         </FormTab>
       </TabbedForm>
