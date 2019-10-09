@@ -96,6 +96,7 @@ function EventCreate(props) {
                 label={'Interested count'}
                 parse={v => (v !== null ? v : undefined)}
               />
+              <BooleanInput source="isHot" label="Is hot" />
             </FormAccordion>
           </ArrayInput>
         </FormTab>

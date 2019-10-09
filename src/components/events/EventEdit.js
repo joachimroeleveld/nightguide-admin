@@ -112,6 +112,7 @@ function EventEdit(props) {
                       source={'interestedCount'}
                       label={'Interested count'}
                     />
+                    <BooleanInput source="isHot" label="Is hot" />
                   </FormAccordion>
                 </ArrayInput>
               </FormTab>
