@@ -37,7 +37,7 @@ function EventEdit(props) {
         const isFbEvent = record && record.facebook && record.facebook.id;
         return (
           <EditView {...otherProps} {...controllerProps}>
-            <TabbedForm>
+            <TabbedForm redirect="edit">
               <FormTab label="General">
                 <SelectInput
                   validate={required()}

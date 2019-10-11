@@ -19,7 +19,7 @@ function BlogEdit(props) {
   const { pageSlug, pageSlugs, ...otherProps } = props;
   return (
     <Edit undoable={false} {...props}>
-      <TabbedForm>
+      <TabbedForm redirect="edit">
         <FormTab label="General">
           <SelectInput
             validate={required()}

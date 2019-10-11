@@ -6,7 +6,7 @@ import TranslatedTextInput from '../TranslatedTextInput';
 function PageEdit(props) {
   return (
     <Edit undoable={false} {...props}>
-      <SimpleForm>
+      <SimpleForm redirect="edit">
         <TranslatedTextInput source="title" validate={required()} />
         <TextInput source="urlSlugs.0" label="URL slug" />
         <TranslatedTextInput rich={true} source="body" validate={required()} />

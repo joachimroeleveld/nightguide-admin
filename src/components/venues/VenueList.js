@@ -26,6 +26,7 @@ function VenueList(props) {
   return (
     <List {...props} filters={<VenueFilter />}>
       <Datagrid rowClick="edit">
+        <TextField source="id" />
         <TextField source="name" />
       </Datagrid>
     </List>

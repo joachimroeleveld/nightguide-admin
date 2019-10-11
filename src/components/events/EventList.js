@@ -57,6 +57,7 @@ function EventList(props) {
       filterDefaultValues={{ dateFrom: new Date() }}
     >
       <Datagrid rowClick="edit">
+        <TextField source="id" />
         <GoogleImage source="images[0].url" size="48" label="" />
         <ReferenceField
           label="Venue"

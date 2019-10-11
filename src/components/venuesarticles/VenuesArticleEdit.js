@@ -49,7 +49,7 @@ function VenuesArticleEdit(props) {
 
   return (
     <Edit undoable={false} {...otherProps}>
-      <TabbedForm redirect="list">
+      <TabbedForm redirect="edit">
         <FormTab label="General">
           <TextInput source="urlSlugs.0" label="URL slug" />
           <SelectInput

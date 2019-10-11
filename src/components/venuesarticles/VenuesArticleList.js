@@ -5,6 +5,7 @@ import {
   Filter,
   TextInput,
   FormDataConsumer,
+  TextField,
 } from 'react-admin';
 import PageSlugFilterUpdater from '../PageSlugFilterUpdater';
 import TranslatedTextField from '../TranslatedTextField';
@@ -25,6 +26,7 @@ function VenuesArticleList(props) {
   return (
     <List {...props} filters={<VenuesArticleFilter />}>
       <Datagrid rowClick="edit">
+        <TextField source="id" />
         <TranslatedTextField source="title" />
       </Datagrid>
     </List>

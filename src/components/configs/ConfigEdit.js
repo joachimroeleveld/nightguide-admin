@@ -16,7 +16,7 @@ function ConfigEdit(props) {
 
   return (
     <Edit undoable={false} {...props}>
-      <SimpleForm>
+      <SimpleForm redirect="edit">
         <TextInput source="name" validate={required()} />
         <SelectInput
           source="pageSlug"

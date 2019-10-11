@@ -23,7 +23,7 @@ function VenueEdit(props) {
 
   return (
     <Edit undoable={false} {...props}>
-      <TabbedForm redirect="list">
+      <TabbedForm redirect="edit">
         <FormTab label="General">
           <TextField source="id" />
           <SelectInput

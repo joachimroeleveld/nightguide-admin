@@ -4,7 +4,7 @@ import { Edit, SimpleForm, TextInput } from 'react-admin';
 function ArtistEdit(props) {
   return (
     <Edit undoable={false} {...props}>
-      <SimpleForm>
+      <SimpleForm redirect="edit">
         <TextInput source="name" />
       </SimpleForm>
     </Edit>
