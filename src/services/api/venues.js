@@ -8,8 +8,9 @@ import {
 } from 'react-admin';
 
 import request from './request';
-import _ from 'lodash';
 import { updateImages } from './util';
+
+export const GENERATE_TICKET_CODES = 'GENERATE_TICKET_CODES';
 
 export default async (type, params) => {
   switch (type) {
@@ -42,6 +43,10 @@ export default async (type, params) => {
     case DELETE: {
       const { id } = params;
       return request(`/venues/${id}`, { method: 'DELETE', id });
+    }
+    case GENERATE_TICKET_CODES: {
+      const { id } = params;
+      return request(`/venues/${id}/generate-ticket-codes`, { method: 'POST' });
     }
   }
 };

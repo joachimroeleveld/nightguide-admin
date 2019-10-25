@@ -16,6 +16,8 @@ import {
   SelectInput,
   AutocompleteArrayInput,
   regex,
+  SimpleFormIterator,
+  TextField,
 } from 'react-admin';
 import { connect } from 'react-redux';
 
@@ -117,6 +119,12 @@ function EventEdit(props) {
                 </ArrayInput>
               </FormTab>
               <FormTab label="Tickets">
+                <ArrayInput source="tickets.products" label="Products">
+                  <SimpleFormIterator>
+                    <TextInput label="Name" source="name" />
+                    <NumberInput label="Price" source="price" />
+                  </SimpleFormIterator>
+                </ArrayInput>
                 <TextInput
                   label="Ticket redirect URL"
                   source="tickets.checkoutUrl"

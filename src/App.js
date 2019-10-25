@@ -31,6 +31,8 @@ import PageCreate from './components/pages/PageCreate';
 import BlogList from './components/blogs/BlogList';
 import BlogEdit from './components/blogs/BlogEdit';
 import BlogCreate from './components/blogs/BlogCreate';
+import OrderList from './components/orders/OrderList';
+import OrderShow from './components/orders/OrderShow';
 
 import citiesReducer from './state/cities';
 
@@ -84,6 +86,11 @@ function App() {
         list={PageList}
         edit={PageEdit}
         create={PageCreate}
+      />
+      <Resource
+        name="orders"
+        list={OrderList}
+        show={OrderShow}
       />
       <Resource
         name="configs"

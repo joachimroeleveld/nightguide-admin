@@ -4,6 +4,7 @@ import events from './events';
 import artists from './artists';
 import content from './content';
 import configs from './configs';
+import orders from './orders';
 
 const resources = {
   venues,
@@ -11,6 +12,7 @@ const resources = {
   events,
   artists,
   configs,
+  orders,
   'venues-articles': content('venues-article'),
   blogs: content('blog'),
   pages: content('page'),

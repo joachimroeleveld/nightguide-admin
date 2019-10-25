@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {
   required,
   ReferenceInput,
+  SimpleFormIterator,
   AutocompleteInput,
   Create,
   ReferenceArrayInput,
@@ -117,6 +118,12 @@ function EventCreate(props) {
           </ReferenceInput>
         </FormTab>
         <FormTab label="Tickets">
+          <ArrayInput source="tickets.products" label="Products">
+            <SimpleFormIterator>
+              <TextInput label="Name" source="name" />
+              <NumberInput label="Price" source="price" />
+            </SimpleFormIterator>
+          </ArrayInput>
           <TextInput
             label="Ticket redirect URL"
             source="tickets.checkoutUrl"

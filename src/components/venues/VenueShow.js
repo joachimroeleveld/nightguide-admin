@@ -5,18 +5,38 @@ import {
   TextField,
   ReferenceManyField,
   Datagrid,
+  EditButton,
+  UrlField,
 } from 'react-admin';
+import CardActions from '@material-ui/core/CardActions';
 
 import EventDates from '../events/EventDates';
 import GoogleImage from '../GoogleImage';
-import TranslatedTextField from '../TranslatedTextField';
+import VenueCreateTicketCodesButton from './VenueCreateTicketCodesButton';
+
+const cardActionStyle = {
+  zIndex: 2,
+  display: 'inline-block',
+  float: 'right',
+};
+
+const VenueShowActions = ({ basePath, data, resource }) => (
+  <CardActions style={cardActionStyle}>
+    <EditButton basePath={basePath} record={data} />
+    <VenueCreateTicketCodesButton record={data} />
+  </CardActions>
+);
 
 function VenueEdit(props) {
   return (
-    <Show {...props}>
+    <Show actions={<VenueShowActions />} {...props}>
       <SimpleShowLayout>
         <TextField source="name" />
-        <TranslatedTextField rich={true} source={'description'} />
+        <UrlField
+          label="Ticket codes PDF"
+          source="tickets.pdfUrl"
+          target="_blank"
+        />
         <ReferenceManyField label="Events" reference="events" target="venue">
           <Datagrid rowClick="show">
             <GoogleImage source="images[0].url" size="48" label="" />
