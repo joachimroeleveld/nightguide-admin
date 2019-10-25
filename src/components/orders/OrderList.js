@@ -1,9 +1,33 @@
 import React from 'react';
-import { List, Datagrid, TextField, DateField } from 'react-admin';
+import {
+  List,
+  Datagrid,
+  TextField,
+  DateField,
+  Filter,
+  SelectInput,
+} from 'react-admin';
+
+const OrderListFilter = props => (
+  <Filter {...props}>
+    <SelectInput
+      source="status"
+      choices={[
+        { id: 'pending', name: 'Pending' },
+        { id: 'processing', name: 'Processing' },
+        { id: 'completed', name: 'Completed' },
+      ]}
+    />
+  </Filter>
+);
 
 function OrderList(props) {
   return (
-    <List {...props}>
+    <List
+      {...props}
+      filters={<OrderListFilter />}
+      filterDefaultValues={{ status: 'completed' }}
+    >
       <Datagrid rowClick="show">
         <TextField source="id" />
         <TextField source="billingDetails.name" />
