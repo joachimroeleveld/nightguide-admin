@@ -125,6 +125,7 @@ function EventEdit(props) {
                     <NumberInput label="Price" source="price" />
                   </SimpleFormIterator>
                 </ArrayInput>
+                <NumberInput source="tickets.displayPrice" label="Display price" />
                 <TextInput
                   label="Ticket redirect URL"
                   source="tickets.checkoutUrl"
