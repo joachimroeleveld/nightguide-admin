@@ -128,7 +128,7 @@ function EventEdit(props) {
                 <NumberInput
                   source="tickets.displayPrice"
                   label="Display price"
-                  parse={v => (v ? v : undefined)}
+                  parse={v => (v !== null ? v : undefined)}
                 />
                 <TextInput
                   label="Ticket redirect URL"
