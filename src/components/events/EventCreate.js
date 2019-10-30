@@ -124,7 +124,11 @@ function EventCreate(props) {
               <NumberInput label="Price" source="price" />
             </SimpleFormIterator>
           </ArrayInput>
-          <NumberInput source="tickets.displayPrice" label="Display price" />
+          <NumberInput
+            source="tickets.displayPrice"
+            label="Display price"
+            parse={v => (v ? v : undefined)}
+          />
           <TextInput
             label="Ticket redirect URL"
             source="tickets.checkoutUrl"
