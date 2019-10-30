@@ -8,6 +8,10 @@
     "name": "Eventix"
   },
   {
+    "id": "paylogic",
+    "name": "Paylogic"
+  },
+  {
     "id": "yourticketprovider",
     "name": "Yourticketprovider"
   },
@@ -18,5 +22,9 @@
   {
     "id": "ticketmaster",
     "name": "Ticketmaster"
+  },
+  {
+    "id": "gaygo",
+    "name": "Gaygo tickets"
   }
 ]

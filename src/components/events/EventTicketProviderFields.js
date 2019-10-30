@@ -22,13 +22,19 @@ function EventTicketProviderFields(props) {
             switch (tickets.provider) {
               case 'eventix':
                 return (
-                  <Fragment>
-                    <TextInput
-                      label="Shop ID"
-                      source="tickets.providerData.shopId"
-                      {...props}
-                    />
-                  </Fragment>
+                  <TextInput
+                    label="Shop ID"
+                    source="tickets.providerData.shopId"
+                    {...props}
+                  />
+                );
+              case 'gaygo':
+                return (
+                  <TextInput
+                    label="Promotor ID"
+                    source="tickets.providerData.promotorId"
+                    {...props}
+                  />
                 );
               case 'eventbrite':
                 return (
