@@ -91,7 +91,7 @@ export class SimpleFormIterator extends Component {
       expanded: this.ids.length === 1 ? this.ids[0] : false,
     };
 
-    const { record, source, renderLabel } = this.props;
+    const { record, source } = this.props;
     const records = get(record, source);
   }
 

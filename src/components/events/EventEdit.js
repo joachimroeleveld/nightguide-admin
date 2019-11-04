@@ -78,7 +78,7 @@ function EventEdit(props) {
                   style={{ width: '100%' }}
                 >
                   <FormAccordion
-                    renderLabel={record => (
+                    LabelComponent={({ record }) => (
                       <EventDates record={{ dates: record }} source="dates" />
                     )}
                     disableAdd={() => isFbEvent}
@@ -136,6 +136,7 @@ function EventEdit(props) {
                   validate={regex(/^https?:\/\/.+\..+/, 'Not a valid URL')}
                 />
                 <EventTicketProviderFields />
+                <BooleanInput source="tickets.soldOut" label="Sold out" />
               </FormTab>
               <FormTab label="Media">
                 <ImageInput
