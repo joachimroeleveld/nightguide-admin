@@ -17,7 +17,9 @@ import {
   AutocompleteArrayInput,
   regex,
   SimpleFormIterator,
-  TextField,
+  ShowButton,
+  CloneButton,
+  CardActions,
 } from 'react-admin';
 import { connect } from 'react-redux';
 
@@ -25,9 +27,16 @@ import GoogleImage from '../GoogleImage';
 import { __src } from '../../services/i18n';
 import TranslatedTextInput from '../TranslatedTextInput';
 import FormAccordion from '../FormAccordion';
-import { getPageSlugs } from '../../state/cities';
 import EventDates from './EventDates';
 import EventTicketProviderFields from './EventTicketProviderFields';
+import { getPageSlugs } from '../../state/cities';
+
+const EventEditActions = ({ basePath, data, resource }) => (
+  <CardActions>
+    <ShowButton basePath={basePath} record={data} />
+    <CloneButton basePath={basePath} record={data} />
+  </CardActions>
+);
 
 function EventEdit(props) {
   const { pageSlug, pageSlugs, dispatch, ...otherProps } = props;
@@ -38,7 +47,11 @@ function EventEdit(props) {
         const { record } = controllerProps;
         const isFbEvent = record && record.facebook && record.facebook.id;
         return (
-          <EditView {...otherProps} {...controllerProps}>
+          <EditView
+            {...otherProps}
+            {...controllerProps}
+            actions={<EventEditActions />}
+          >
             <TabbedForm redirect="edit">
               <FormTab label="General">
                 <SelectInput

@@ -27,7 +27,7 @@ const VenueShowActions = ({ basePath, data, resource }) => (
   </CardActions>
 );
 
-function VenueEdit(props) {
+function VenueShow(props) {
   return (
     <Show actions={<VenueShowActions />} {...props}>
       <SimpleShowLayout>
@@ -50,4 +50,4 @@ function VenueEdit(props) {
   );
 }
 
-export default VenueEdit;
+export default VenueShow;
