@@ -133,6 +133,7 @@ function EventCreate(props) {
           />
           <EventTicketProviderFields />
           <BooleanInput source="tickets.soldOut" label="Sold out" />
+          <BooleanInput source="tickets.doorSale" label="Door sale" />
         </FormTab>
         <FormTab label="Media">
           <ImageInput
