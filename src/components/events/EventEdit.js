@@ -160,7 +160,7 @@ function EventEdit(props) {
                   maxSize={5000000} // 5MB
                   multiple
                 >
-                  <GoogleImage source="url" size={230} />
+                  <GoogleImage showIdField={true} source="url" size={230} />
                 </ImageInput>
                 <TextInput
                   label="Video URL"

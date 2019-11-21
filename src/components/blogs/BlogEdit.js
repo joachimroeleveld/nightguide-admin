@@ -52,7 +52,7 @@ function BlogEdit(props) {
             maxSize={5000000} // 5MB
             multiple
           >
-            <GoogleImage captionSource="id" source="url" size={230} />
+            <GoogleImage source="url" size={230} />
           </ImageInput>
         </FormTab>
       </TabbedForm>

@@ -44,6 +44,13 @@ function VenuesArticleCreate(props) {
             rich={true}
             inputProps={{ minEditorHeight: 60, commands: [] }}
           />
+          <TranslatedTextInput
+            validate={required()}
+            source="footer"
+            label="Footer text"
+            rich={true}
+            inputProps={{ minEditorHeight: 60, commands: [] }}
+          />
         </FormTab>
         <FormTab label="Venues">
           <ArrayInput

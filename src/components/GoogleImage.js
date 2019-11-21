@@ -1,11 +1,12 @@
 import React from 'react';
 import _ from 'lodash';
 
+import IdTextField from './IdTextField';
+
 export default function GoogleImage(props) {
-  const { source, record = {}, captionSource, size, alt = '' } = props;
+  const { source, record = {}, showIdField = false, size, alt = '' } = props;
 
   let src = _.get(record, source);
-  let caption = _.get(record, captionSource);
 
   if (!src) {
     return null;
@@ -18,7 +19,7 @@ export default function GoogleImage(props) {
   return (
     <figure>
       <img alt={alt} src={src} />
-      {caption && <figcaption>{caption}</figcaption>}
+      {showIdField && <IdTextField record={record} />}
     </figure>
   );
 }

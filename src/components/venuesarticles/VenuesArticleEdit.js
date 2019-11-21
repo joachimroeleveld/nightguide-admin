@@ -73,6 +73,13 @@ function VenuesArticleEdit(props) {
             rich={true}
             inputProps={{ minEditorHeight: 60, commands: [] }}
           />
+          <TranslatedTextInput
+            validate={required()}
+            source="footer"
+            label="Footer text"
+            rich={true}
+            inputProps={{ minEditorHeight: 60, commands: [] }}
+          />
         </FormTab>
         <FormTab label="Venues">
           <ArrayInput
@@ -112,7 +119,7 @@ function VenuesArticleEdit(props) {
             maxSize={5000000} // 5MB
             multiple
           >
-            <GoogleImage captionSource="id" source="url" size={230} />
+            <GoogleImage source="url" size={230} />
           </ImageInput>
         </FormTab>
       </TabbedForm>
