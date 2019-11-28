@@ -18,6 +18,7 @@ import {
   DateTimeInput,
   SelectInput,
   AutocompleteArrayInput,
+  FormDataConsumer,
   regex,
 } from 'react-admin';
 
@@ -135,6 +136,35 @@ function EventCreate(props) {
           <BooleanInput source="tickets.soldOut" label="Sold out" />
           <BooleanInput source="tickets.doorSale" label="Door sale" />
           <BooleanInput source="tickets.free" label="Free" />
+          <FormDataConsumer>
+            {({ formData }) => {
+              const { tickets = {} } = formData || {};
+              return (
+                <React.Fragment>
+                  <BooleanInput source="tickets.qrCode" label="QR code" />
+                  {tickets.qrCode && (
+                    <TranslatedTextInput
+                      validate={required()}
+                      source="tickets.qrCodeInfo"
+                      label="QR code info"
+                      rich={true}
+                      inputProps={{ minEditorHeight: 60, commands: [] }}
+                    />
+                  )}
+                  <BooleanInput source="tickets.guestList" label="Guest list" />
+                  {tickets.guestList && (
+                    <TranslatedTextInput
+                      validate={required()}
+                      source="tickets.guestListInfo"
+                      label="Guest list info"
+                      rich={true}
+                      inputProps={{ minEditorHeight: 60, commands: [] }}
+                    />
+                  )}
+                </React.Fragment>
+              );
+            }}
+          </FormDataConsumer>
         </FormTab>
         <FormTab label="Media">
           <ImageInput

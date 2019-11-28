@@ -16,6 +16,7 @@ import { connect } from 'react-redux';
 import TranslatedTextInput from '../TranslatedTextInput';
 import GoogleImage from '../GoogleImage';
 import { getPageSlugs } from '../../state/cities';
+import QrCodeInput from '../QrCodeInput';
 
 function VenueCreate(props) {
   const { pageSlug, pageSlugs, dispatch, ...otherProps } = props;
@@ -81,6 +82,13 @@ function VenueCreate(props) {
         </FormTab>
         <FormTab label="Social">
           <TextInput source="facebook.id" label="Facebook ID" />
+        </FormTab>
+        <FormTab label="Tickets">
+          <TextInput
+            source="tickets.guestListReference"
+            label="Guest list reference"
+          />
+          <QrCodeInput label="QR code" source="tickets.qrCode" />
         </FormTab>
       </TabbedForm>
     </Create>
