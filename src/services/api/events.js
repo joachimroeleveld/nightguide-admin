@@ -6,6 +6,7 @@ import {
   DELETE,
   GET_MANY,
   GET_MANY_REFERENCE,
+  DELETE_MANY,
 } from 'react-admin';
 
 import { updateImages } from './util';
@@ -41,6 +42,10 @@ export default async (type, params) => {
     case DELETE: {
       const { id } = params;
       return request(`/events/${id}`, { method: 'DELETE', id });
+    }
+    case DELETE_MANY: {
+      const { ids } = params;
+      return request(`/events`, { method: 'DELETE', query: { ids } });
     }
     case GET_MANY_REFERENCE:
       if (params.target === 'venue') {
