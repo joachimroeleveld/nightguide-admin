@@ -29,6 +29,7 @@ import { getPageSlugs } from '../../state/cities';
 import FormAccordion from '../FormAccordion';
 import EventDates from './EventDates';
 import EventTicketProviderFields from './EventTicketProviderFields';
+import EventDateRepeater from './EventDateRepeater';
 
 function EventCreate(props) {
   const { pageSlug, pageSlugs, dispatch, ...otherProps } = props;
@@ -60,6 +61,7 @@ function EventCreate(props) {
           <BooleanInput source="admin.hide" label="Hide" />
         </FormTab>
         <FormTab label="Dates">
+          <EventDateRepeater />
           <ArrayInput
             validate={required()}
             source="dates"

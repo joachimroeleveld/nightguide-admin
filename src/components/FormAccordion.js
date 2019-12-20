@@ -21,6 +21,7 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import _ from 'lodash';
 
 const styles = theme =>
   createStyles({
@@ -69,13 +70,13 @@ const styles = theme =>
     },
   });
 
-export class SimpleFormIterator extends Component {
+export class FormAccordion extends Component {
   constructor(props) {
     super(props);
     // we need a unique id for each field for a proper enter/exit animation
     // but redux-form doesn't provide one (cf https://github.com/erikras/redux-form/issues/2735)
     // so we keep an internal map between the field position and an autoincrement id
-    this.nextId = props.fields.length
+    const nextId = props.fields.length
       ? props.fields.length
       : props.defaultValue
       ? props.defaultValue.length
@@ -85,14 +86,27 @@ export class SimpleFormIterator extends Component {
     // the fields prop which will always be empty for a new record.
     // Without it, our ids wouldn't match the default value and we would get key warnings
     // on the CssTransition element inside our render method
-    this.ids = this.nextId > 0 ? Array.from(Array(this.nextId).keys()) : [];
+    const ids = nextId > 0 ? Array.from(Array(nextId).keys()) : [];
 
     this.state = {
-      expanded: this.ids.length === 1 ? this.ids[0] : false,
+      expanded: ids.length === 1 ? ids[0] : false,
+      nextId,
+      ids,
     };
+  }
 
-    const { record, source } = this.props;
-    const records = get(record, source);
+  static getDerivedStateFromProps(props, state) {
+    if (state.ids.length < props.fields.length) {
+      const addedIdsCount = props.fields.length - state.ids.length;
+      return {
+        nextId: state.nextId + addedIdsCount,
+        ids: [
+          ...state.ids,
+          ..._.range(state.nextId, state.nextId + addedIdsCount),
+        ],
+      };
+    }
+    return null;
   }
 
   handleChange = panel => (event, isExpanded) => {
@@ -103,7 +117,12 @@ export class SimpleFormIterator extends Component {
 
   removeField = index => () => {
     const { fields } = this.props;
-    this.ids.splice(index, 1);
+    this.setState({
+      ids: [
+        ...this.state.ids.slice(0, index),
+        ...this.state.ids.slice(index + 1),
+      ],
+    });
     fields.remove(index);
   };
 
@@ -120,7 +139,10 @@ export class SimpleFormIterator extends Component {
 
   addField = () => {
     const { fields } = this.props;
-    this.ids.push(this.nextId++);
+    this.setState({
+      nextId: this.state.nextId + 1,
+      ids: this.state.ids.concat(this.state.nextId),
+    });
     fields.push({});
   };
 
@@ -148,13 +170,13 @@ export class SimpleFormIterator extends Component {
         <TransitionGroup>
           {fields.map((member, index) => (
             <CSSTransition
-              key={this.ids[index]}
+              key={this.state.ids[index]}
               timeout={500}
               classNames="fade"
             >
               <ExpansionPanel
-                expanded={this.state.expanded === this.ids[index]}
-                onChange={this.handleChange(this.ids[index])}
+                expanded={this.state.expanded === this.state.ids[index]}
+                onChange={this.handleChange(this.state.ids[index])}
               >
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                   <Typography variant="body1" className={classes.index}>
@@ -163,7 +185,7 @@ export class SimpleFormIterator extends Component {
                     />
                   </Typography>
                 </ExpansionPanelSummary>
-                {this.state.expanded === this.ids[index] && (
+                {this.state.expanded === this.state.ids[index] && (
                   <ExpansionPanelDetails>
                     <section className={classes.form}>
                       {Children.map(children, (input, index2) =>
@@ -226,12 +248,12 @@ export class SimpleFormIterator extends Component {
   }
 }
 
-const SimpleFormIteratorField = compose(
+const FormAccordionField = compose(
   translate,
   withStyles(styles)
-)(SimpleFormIterator);
+)(FormAccordion);
 
-SimpleFormIteratorField.propTypes = {
+FormAccordionField.propTypes = {
   defaultValue: PropTypes.any,
   basePath: PropTypes.string,
   children: PropTypes.node,
@@ -248,4 +270,4 @@ SimpleFormIteratorField.propTypes = {
   renderLabel: PropTypes.func,
 };
 
-export default SimpleFormIteratorField;
+export default FormAccordionField;
