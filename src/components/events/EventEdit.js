@@ -19,7 +19,7 @@ import {
   SimpleFormIterator,
   ShowButton,
   CloneButton,
-  CardActions,
+  TopToolbar,
   FormDataConsumer,
 } from 'react-admin';
 import { connect } from 'react-redux';
@@ -31,12 +31,13 @@ import FormAccordion from '../FormAccordion';
 import EventDates from './EventDates';
 import EventTicketProviderFields from './EventTicketProviderFields';
 import { getPageSlugs } from '../../state/cities';
+import EventDateRepeater from './EventDateRepeater';
 
 const EventEditActions = ({ basePath, data, resource }) => (
-  <CardActions>
+  <TopToolbar>
     <ShowButton basePath={basePath} record={data} />
     <CloneButton basePath={basePath} record={data} />
-  </CardActions>
+  </TopToolbar>
 );
 
 function EventEdit(props) {
@@ -82,6 +83,7 @@ function EventEdit(props) {
                 <BooleanInput source="admin.hide" label="Hide" />
               </FormTab>
               <FormTab label="Dates">
+                <EventDateRepeater />
                 <BooleanInput
                   source="facebook.datesChanged"
                   label="Dates changed"

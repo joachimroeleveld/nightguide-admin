@@ -23,7 +23,7 @@ function EventShow(props) {
             label="Event"
             source="metadata.eventId"
             reference="events"
-            linkType="show"
+            link="show"
           >
             <TextField source="id" />
           </ReferenceField>

@@ -254,7 +254,7 @@ const FormAccordionField = compose(
 )(FormAccordion);
 
 FormAccordionField.propTypes = {
-  defaultValue: PropTypes.any,
+  initialValues: PropTypes.any,
   basePath: PropTypes.string,
   children: PropTypes.node,
   classes: PropTypes.object,

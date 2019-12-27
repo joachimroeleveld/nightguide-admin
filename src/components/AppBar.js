@@ -31,7 +31,7 @@ const CitySwitcher = withStyles(styles)(props => {
       setCityConfig(res.data.payload);
     }
     fetchConfig();
-  }, []);
+  }, [setCityConfig]);
 
   function handleChange(event) {
     setPageSlug(event.target.value);

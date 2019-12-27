@@ -7,8 +7,8 @@ import {
   Datagrid,
   EditButton,
   UrlField,
+  TopToolbar
 } from 'react-admin';
-import CardActions from '@material-ui/core/CardActions';
 
 import EventDates from '../events/EventDates';
 import GoogleImage from '../GoogleImage';
@@ -21,10 +21,10 @@ const cardActionStyle = {
 };
 
 const VenueShowActions = ({ basePath, data, resource }) => (
-  <CardActions style={cardActionStyle}>
+  <TopToolbar style={cardActionStyle}>
     <EditButton basePath={basePath} record={data} />
     <VenueCreateTicketCodesButton record={data} />
-  </CardActions>
+  </TopToolbar>
 );
 
 function VenueShow(props) {

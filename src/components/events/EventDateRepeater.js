@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { TextField, FormDataConsumer } from 'react-admin';
 import moment from 'moment';
-import { change } from 'redux-form';
-import { REDUX_FORM_NAME } from 'react-admin';
-import { connect } from 'react-redux';
 import _ from 'lodash';
+import { useForm } from 'react-final-form';
 
-const EventDateRepeater = props => {
-  const { dispatch, } = props;
+const EventDateRepeater = () => {
+  const form = useForm();
 
   const [date, setDate] = useState(null);
   const [dow, setDow] = useState(1);
@@ -20,7 +18,9 @@ const EventDateRepeater = props => {
     setDow(parseInt(e.target.value) - 1);
   };
 
-  const onApply = (formData = {}) => {
+  const onApply = (e, formData = {}) => {
+    e.preventDefault();
+
     const numberOfDates = moment()
       .day(dow)
       .diff(moment(date), 'weeks');
@@ -38,7 +38,7 @@ const EventDateRepeater = props => {
       }))
       .reverse();
     const dates = (formData.dates || []).concat(addedDates);
-    dispatch(change(REDUX_FORM_NAME, 'dates', dates));
+    form.change('dates', dates);
   };
 
   return (
@@ -57,7 +57,7 @@ const EventDateRepeater = props => {
       <input type="date" onChange={onDateSet} />
       <FormDataConsumer>
         {({ formData }) => (
-          <button onClick={() => onApply(formData)}>Apply</button>
+          <button onClick={e => onApply(e, formData)}>Apply</button>
         )}
       </FormDataConsumer>
     </div>
@@ -66,4 +66,4 @@ const EventDateRepeater = props => {
 
 EventDateRepeater.propTypes = TextField.propTypes;
 
-export default connect()(EventDateRepeater);
+export default EventDateRepeater;

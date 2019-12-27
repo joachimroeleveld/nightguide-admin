@@ -14,8 +14,8 @@ const VenuesArticleFilter = props => {
   return (
     <Filter {...props}>
       <TextInput label="Search" source="query" alwaysOn />
-      <FormDataConsumer form="filterForm" source="foo" alwaysOn>
-        {({ dispatch }) => <PageSlugFilterUpdater formDispatch={dispatch} />}
+      <FormDataConsumer alwaysOn>
+        {() => <PageSlugFilterUpdater />}
       </FormDataConsumer>
       <TextInput source="pageSlug" />
     </Filter>

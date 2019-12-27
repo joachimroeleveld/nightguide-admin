@@ -33,7 +33,7 @@ const VenueLabel = connect()(props =>
         source="venueId"
         reference="venues"
         resource="venues-articles"
-        linkType={false}
+        link={false}
         addLabel={false}
       >
         <TextField source="name" />

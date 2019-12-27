@@ -36,6 +36,14 @@ function EventTicketProviderFields(props) {
                     {...props}
                   />
                 );
+              case 'exceed':
+                return (
+                  <TextInput
+                    label="List ID"
+                    source="tickets.providerData.list"
+                    {...props}
+                  />
+                );
               case 'eventbrite':
                 return (
                   <Fragment>

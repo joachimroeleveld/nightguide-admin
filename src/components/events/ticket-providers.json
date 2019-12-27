@@ -24,6 +24,10 @@
     "name": "Ticketmaster"
   },
   {
+    "id": "exceed",
+    "name": "Exceed"
+  },
+  {
     "id": "gaygo",
     "name": "Gaygo tickets"
   }

@@ -17,7 +17,7 @@ export default function GoogleImage(props) {
   }
 
   return (
-    <figure>
+    <figure style={{margin:0}}>
       <img alt={alt} src={src} />
       {showIdField && <IdTextField record={record} />}
     </figure>

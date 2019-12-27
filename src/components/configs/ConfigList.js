@@ -13,8 +13,8 @@ import PageSlugFilterUpdater from '../PageSlugFilterUpdater';
 const ConfigFilter = props => {
   return (
     <Filter {...props}>
-      <FormDataConsumer form="filterForm" source="foo" alwaysOn>
-        {({ dispatch }) => <PageSlugFilterUpdater formDispatch={dispatch} />}
+      <FormDataConsumer alwaysOn>
+        {() => <PageSlugFilterUpdater />}
       </FormDataConsumer>
       <TextInput label="Search" source="query" alwaysOn />
       <TextInput label="Page slug" source="pageSlug" />

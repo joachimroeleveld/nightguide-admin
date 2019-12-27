@@ -1,23 +1,21 @@
 import { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { change } from 'redux-form';
+import { useSelector } from 'react-redux';
+import { useForm } from 'react-final-form';
+import { addField } from 'ra-core';
+import { getPageSlug } from '../state/cities';
 
-const PageSlugFilterUpdater = props => {
-  const { pageSlug, formDispatch } = props;
+const PageSlugFilterUpdater = () => {
+  const pageSlug = useSelector(getPageSlug);
+
+  const form = useForm();
 
   useEffect(() => {
-    formDispatch(
-      change(
-        'filterForm',
-        'pageSlug',
-        pageSlug === 'none' ? null : pageSlug
-      )
-    );
+    form.change('pageSlug', pageSlug === 'none' ? null : pageSlug);
   }, [pageSlug]);
 
   return null;
 };
 
-export default connect(state => ({
-  pageSlug: state.cities.pageSlug,
-}))(PageSlugFilterUpdater);
+export default addField(
+  PageSlugFilterUpdater
+);

@@ -34,7 +34,7 @@ function EventEdit(props) {
                 label="Venue"
                 source="organiser.venue"
                 reference="venues"
-                linkType="show"
+                link="show"
               >
                 <TextField source="name" />
               </ReferenceField>

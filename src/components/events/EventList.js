@@ -24,8 +24,8 @@ const EventFilter = connect(state => ({
   const { pageSlug, dispatch, ...otherProps } = props;
   return (
     <Filter {...otherProps}>
-      <FormDataConsumer form="filterForm" source="foo" alwaysOn>
-        {({ dispatch }) => <PageSlugFilterUpdater formDispatch={dispatch} />}
+      <FormDataConsumer alwaysOn>
+        {() => <PageSlugFilterUpdater />}
       </FormDataConsumer>
       <TextInput label="Search" source="text" alwaysOn />
       <ReferenceInput
@@ -44,7 +44,7 @@ const EventFilter = connect(state => ({
       <BooleanInput label="Facebook dates changed" source="datesChanged" />
       <BooleanInput label="Show hidden" source="showHidden" />
       <BooleanInput label="Tagged" source="tagged" />
-      <TextInput source="pageSlug" />
+      <TextInput source="pageSlug" alwaysOn />
     </Filter>
   );
 });
@@ -63,7 +63,7 @@ function EventList(props) {
           label="Venue"
           source="organiser.venue"
           reference="venues"
-          linkType={false}
+          link={false}
         >
           <TextField source="name" />
         </ReferenceField>
