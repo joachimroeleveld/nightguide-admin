@@ -38,11 +38,20 @@ function EventTicketProviderFields(props) {
                 );
               case 'exceed':
                 return (
-                  <TextInput
-                    label="List ID"
-                    source="tickets.providerData.list"
-                    {...props}
-                  />
+                  <>
+                    <TextInput
+                      label="City"
+                      source="tickets.providerData.city"
+                      helperText="Part in URL before event ID"
+                      {...props}
+                    />
+                    <TextInput
+                      label="List ID"
+                      source="tickets.providerData.list"
+                      helperText="List ID, present in URL"
+                      {...props}
+                    />
+                  </>
                 );
               case 'eventbrite':
                 return (
