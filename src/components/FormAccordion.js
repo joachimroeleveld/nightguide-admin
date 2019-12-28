@@ -181,7 +181,7 @@ export class FormAccordion extends Component {
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                   <Typography variant="body1" className={classes.index}>
                     <LabelComponent
-                      record={(records && records[index]) || {}}
+                      record={(records && records[index])}
                     />
                   </Typography>
                 </ExpansionPanelSummary>
@@ -267,7 +267,7 @@ FormAccordionField.propTypes = {
   translate: PropTypes.func,
   disableAdd: PropTypes.bool,
   disableRemove: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
-  renderLabel: PropTypes.func,
+  LabelComponent: PropTypes.elem,
 };
 
 export default FormAccordionField;

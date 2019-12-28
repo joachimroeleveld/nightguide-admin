@@ -30,11 +30,13 @@ const EventDateRepeater = () => {
         ...dateData,
         from: moment()
           .day(dow)
-          .add(i, 'week'),
+          .add(i, 'week')
+          .toISOString(),
         to: moment()
           .day(dow)
           .add(i, 'week')
-          .add(1, 'hour'),
+          .add(1, 'hour')
+          .toISOString(),
       }))
       .reverse();
     const dates = (formData.dates || []).concat(addedDates);
