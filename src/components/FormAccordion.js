@@ -159,7 +159,7 @@ export class FormAccordion extends Component {
       translate,
       disableAdd = false,
       disableRemove = false,
-      LabelComponent = () => 'NEW',
+      LabelComponent,
     } = this.props;
     const records = get(record, source);
     return fields ? (
@@ -180,9 +180,10 @@ export class FormAccordion extends Component {
               >
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                   <Typography variant="body1" className={classes.index}>
-                    <LabelComponent
-                      record={(records && records[index])}
-                    />
+                    {records && records[index] && (
+                      <LabelComponent record={records[index]} />
+                    )}
+                    {(!records || !records[index]) && 'NEW'}
                   </Typography>
                 </ExpansionPanelSummary>
                 {this.state.expanded === this.state.ids[index] && (

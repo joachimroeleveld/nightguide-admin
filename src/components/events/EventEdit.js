@@ -94,13 +94,9 @@ function EventEdit(props) {
                   style={{ width: '100%' }}
                 >
                   <FormAccordion
-                    LabelComponent={({ record }) =>
-                      record ? (
-                        <EventDates record={{ dates: record }} source="dates" />
-                      ) : (
-                        'NEW'
-                      )
-                    }
+                    LabelComponent={({ record }) => (
+                      <EventDates record={{ dates: record }} source="dates" />
+                    )}
                     disableAdd={() => isFbEvent}
                   >
                     <DateTimeInput
