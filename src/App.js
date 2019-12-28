@@ -43,7 +43,6 @@ function App() {
 
   return (
     <Admin
-      appLayout={AppLayout}
       dataProvider={dataProvider}
       authProvider={authProvider}
       customReducers={customReducers}
