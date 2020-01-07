@@ -21,6 +21,8 @@ import {
   CloneButton,
   TopToolbar,
   FormDataConsumer,
+  ReferenceInput,
+  AutocompleteInput,
 } from 'react-admin';
 import { connect } from 'react-redux';
 
@@ -133,6 +135,21 @@ function EventEdit(props) {
                     <BooleanInput source="isHot" label="Is hot" />
                   </FormAccordion>
                 </ArrayInput>
+              </FormTab>
+              <FormTab label="Location">
+                <TextInput
+                  source="location.type"
+                  defaultValue="venue"
+                  disabled={true}
+                />
+                <ReferenceInput
+                  validate={required()}
+                  label="Venue"
+                  source="organiser.venue"
+                  reference="venues"
+                >
+                  <AutocompleteInput disabled={true} optionText="name" />
+                </ReferenceInput>
               </FormTab>
               <FormTab label="Tickets">
                 <ArrayInput source="tickets.products" label="Products">
